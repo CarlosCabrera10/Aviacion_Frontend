@@ -1,30 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AvionetaService, Avioneta } from './services/avioneta.service';
+import { Component } from '@angular/core';
+import { RouterOutlet, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [RouterOutlet, RouterModule],
   template: `
-    <h1>✈️ Lista de Avionetas</h1>
-    <ul *ngIf="avionetas.length; else vacio">
-      <li *ngFor="let a of avionetas">
-        {{ a.codigo }} - {{ a.modelo }} ({{ a.estado }})
-      </li>
-    </ul>
-    <ng-template #vacio><p>No hay avionetas registradas.</p></ng-template>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+      <a class="navbar-brand" href="#">✈️ Aviación</a>
+      <div class="navbar-nav">
+        <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Avionetas</a>
+        <a class="nav-link" routerLink="/usuarios" routerLinkActive="active">Usuarios</a>
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <router-outlet></router-outlet>
+    </div>
   `
 })
-export class App implements OnInit {
-  avionetas: Avioneta[] = [];
-
-  constructor(private avionetaService: AvionetaService) {}
-
-  ngOnInit() {
-    this.avionetaService.getAvionetas().subscribe({
-      next: (data) => this.avionetas = data,
-      error: (err) => console.error('Error al cargar avionetas:', err)
-    });
-  }
-}
+export class App {}
