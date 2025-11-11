@@ -9,12 +9,12 @@ import { Usuario } from '../../models/usuario.model';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="container">
+    <div class="list-container">
       <h2>Usuarios</h2>
 
-      <button (click)="nuevoUsuario()" class="btn">+ Nuevo Usuario</button>
+      <button (click)="nuevoUsuario()" class="btn btn-primary">+ Nuevo Usuario</button>
 
-      <table class="tabla">
+      <table>
         <thead>
           <tr>
             <th>Nombre</th>
@@ -31,8 +31,8 @@ import { Usuario } from '../../models/usuario.model';
             <td>{{ usuario.rol }}</td>
             <td>{{ usuario.activo ? 'Sí' : 'No' }}</td>
             <td>
-              <button (click)="editarUsuario(usuario.id)">✏️</button>
-              <button (click)="eliminarUsuario(usuario.id)">🗑️</button>
+              <button (click)="editarUsuario(usuario.id)" class="btn-edit">✏️</button>
+              <button (click)="eliminarUsuario(usuario.id)" class="btn-delete">🗑️</button>
             </td>
           </tr>
         </tbody>
@@ -40,12 +40,79 @@ import { Usuario } from '../../models/usuario.model';
     </div>
   `,
   styles: [`
-    .container { padding: 1rem; }
-    .btn { background: #007bff; color: white; border: none; padding: 0.5rem 1rem; margin-bottom: 1rem; }
-    .tabla { width: 100%; border-collapse: collapse; }
-    .tabla th, .tabla td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
-    .tabla th { background: #f3f3f3; }
-    button { margin-right: 5px; }
+    .list-container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #f8f9fa;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #343a40;
+      font-weight: 700;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      padding: 0.8rem;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background: #e9ecef;
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background: #f1f3f5;
+    }
+
+    button {
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s;
+      margin-right: 5px;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .btn-edit {
+      background-color: #17a2b8;
+      color: #fff;
+    }
+
+    .btn-edit:hover {
+      background-color: #117a8b;
+    }
+
+    .btn-delete {
+      background-color: #dc3545;
+      color: #fff;
+    }
+
+    .btn-delete:hover {
+      background-color: #c82333;
+    }
   `]
 })
 export class UsuariosListComponent implements OnInit {
