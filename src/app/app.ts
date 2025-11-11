@@ -1,18 +1,15 @@
+// src/app/app.component.ts
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule],
+  imports: [RouterOutlet, RouterModule, CommonModule, NavbarComponent],
   template: `
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-      <a class="navbar-brand" href="#">✈️ Aviación</a>
-      <div class="navbar-nav">
-        <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Avionetas</a>
-        <a class="nav-link" routerLink="/usuarios" routerLinkActive="active">Usuarios</a>
-      </div>
-    </nav>
+    <app-navbar></app-navbar>
 
     <div class="container mt-4">
       <router-outlet></router-outlet>
