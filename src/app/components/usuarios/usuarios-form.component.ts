@@ -14,6 +14,7 @@ import { Usuario } from '../../models/usuario.model';
       <h2>{{ editMode ? 'Editar Usuario' : 'Registrar Nuevo Usuario' }}</h2>
 
       <form #form="ngForm" (ngSubmit)="guardar(form)" novalidate>
+        <!-- Nombre -->
         <div class="row">
           <label>Nombre:</label>
           <input
@@ -23,9 +24,16 @@ import { Usuario } from '../../models/usuario.model';
             required
             minlength="2"
             maxlength="50"
+            #nombre="ngModel"
           />
+          <div class="error" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+            <small *ngIf="nombre.errors?.['required']">El nombre es obligatorio.</small>
+            <small *ngIf="nombre.errors?.['minlength']">Debe tener al menos 2 caracteres.</small>
+            <small *ngIf="nombre.errors?.['maxlength']">Máximo 50 caracteres.</small>
+          </div>
         </div>
 
+        <!-- Apellido -->
         <div class="row">
           <label>Apellido:</label>
           <input
@@ -35,9 +43,16 @@ import { Usuario } from '../../models/usuario.model';
             required
             minlength="2"
             maxlength="50"
+            #apellido="ngModel"
           />
+          <div class="error" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+            <small *ngIf="apellido.errors?.['required']">El apellido es obligatorio.</small>
+            <small *ngIf="apellido.errors?.['minlength']">Debe tener al menos 2 caracteres.</small>
+            <small *ngIf="apellido.errors?.['maxlength']">Máximo 50 caracteres.</small>
+          </div>
         </div>
 
+        <!-- Correo -->
         <div class="row">
           <label>Correo:</label>
           <input
@@ -47,9 +62,15 @@ import { Usuario } from '../../models/usuario.model';
             [(ngModel)]="usuario.correo"
             required
             email
+            #correo="ngModel"
           />
+          <div class="error" *ngIf="correo.invalid && (correo.dirty || correo.touched)">
+            <small *ngIf="correo.errors?.['required']">El correo es obligatorio.</small>
+            <small *ngIf="correo.errors?.['email']">Formato de correo no válido.</small>
+          </div>
         </div>
 
+        <!-- Teléfono -->
         <div class="row">
           <label>Teléfono:</label>
           <input
@@ -59,10 +80,16 @@ import { Usuario } from '../../models/usuario.model';
             pattern="^[0-9]{4}-[0-9]{4}$"
             placeholder="0000-0000"
             required
+            #telefono="ngModel"
           />
           <small class="hint">Formato: 0000-0000</small>
+          <div class="error" *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
+            <small *ngIf="telefono.errors?.['required']">El teléfono es obligatorio.</small>
+            <small *ngIf="telefono.errors?.['pattern']">Debe tener el formato 0000-0000.</small>
+          </div>
         </div>
 
+        <!-- Rol -->
         <div class="row">
           <label>Rol:</label>
           <select
@@ -70,14 +97,19 @@ import { Usuario } from '../../models/usuario.model';
             name="rol"
             [(ngModel)]="usuario.rol"
             required
+            #rol="ngModel"
           >
             <option value="" disabled>Seleccione un rol</option>
             <option value="Administrador">Administrador</option>
             <option value="Tutor">Tutor</option>
             <option value="Alumno">Alumno</option>
           </select>
+          <div class="error" *ngIf="rol.invalid && (rol.dirty || rol.touched)">
+            <small>Debe seleccionar un rol.</small>
+          </div>
         </div>
 
+        <!-- Estado -->
         <div class="row">
           <label>Estado:</label>
           <select
@@ -85,12 +117,17 @@ import { Usuario } from '../../models/usuario.model';
             name="activo"
             [(ngModel)]="usuario.activo"
             required
+            #activo="ngModel"
           >
             <option [ngValue]="true">Activo</option>
             <option [ngValue]="false">Inactivo</option>
           </select>
+          <div class="error" *ngIf="activo.invalid && (activo.dirty || activo.touched)">
+            <small>Debe seleccionar un estado.</small>
+          </div>
         </div>
 
+        <!-- Contraseña (solo al crear) -->
         <div class="row" *ngIf="!editMode">
           <label>Contraseña:</label>
           <input
@@ -100,12 +137,19 @@ import { Usuario } from '../../models/usuario.model';
             [(ngModel)]="usuario.contrasena"
             required
             minlength="6"
+            #contrasena="ngModel"
           />
+          <div class="error" *ngIf="contrasena.invalid && (contrasena.dirty || contrasena.touched)">
+            <small *ngIf="contrasena.errors?.['required']">La contraseña es obligatoria.</small>
+            <small *ngIf="contrasena.errors?.['minlength']">Debe tener al menos 6 caracteres.</small>
+          </div>
         </div>
 
+        <!-- Mensajes globales -->
         <div class="error" *ngIf="mensajeError">{{ mensajeError }}</div>
         <div class="success" *ngIf="mensajeExito">{{ mensajeExito }}</div>
 
+        <!-- Botones -->
         <div class="actions">
           <button type="submit" [disabled]="form.invalid">
             {{ editMode ? 'Actualizar' : 'Guardar' }}
@@ -175,8 +219,8 @@ import { Usuario } from '../../models/usuario.model';
     }
     .error {
       color: #d9534f;
-      font-weight: bold;
-      margin-top: 0.5rem;
+      font-size: 13px;
+      margin-top: 0.3rem;
     }
     .success {
       color: #28a745;
@@ -222,7 +266,10 @@ export class UsuariosFormComponent implements OnInit {
   }
 
   guardar(form: NgForm) {
-    if (form.invalid) return;
+    if (form.invalid) {
+      this.mensajeError = 'Por favor, complete todos los campos correctamente.';
+      return;
+    }
 
     this.mensajeError = '';
     this.mensajeExito = '';
