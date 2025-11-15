@@ -7,6 +7,8 @@ import { AvionetasFormComponent } from './components/avionetas/avionetas-form.co
 import { VuelosListComponent } from './components/vuelos/vuelos-list.component';
 import { VuelosFormComponent } from './components/vuelos/vuelos-form.component';
 import { authGuard } from './services/auth.guard';
+import { ReportesComponent } from './components/reportes/reportes.component';
+
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -26,6 +28,9 @@ export const routes: Routes = [
   { path: 'vuelos', component: VuelosListComponent, canActivate: [authGuard] },
   { path: 'vuelos/nuevo', component: VuelosFormComponent, canActivate: [authGuard] },
   { path: 'vuelos/editar/:id', component: VuelosFormComponent, canActivate: [authGuard] },
+
+  // 🔒 Reportes
+  { path: 'reportes', component: ReportesComponent, canActivate: [authGuard] },
 
   // 🚫 Ruta por defecto
   { path: '**', redirectTo: 'login' }
