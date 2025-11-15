@@ -15,6 +15,7 @@ import { AuthService } from '../../services/auth.service';
           <a class="nav-link" routerLink="/avionetas" routerLinkActive="active">Avionetas</a>
           <a class="nav-link" routerLink="/usuarios" routerLinkActive="active">Usuarios</a>
           <a class="nav-link" routerLink="/vuelos" routerLinkActive="active">Vuelos</a>
+          <a class="nav-link" routerLink="/reportes" routerLinkActive="active">Reportes</a>
         </ng-container>
 
         <ng-container *ngIf="rol === 'Tutor'">
