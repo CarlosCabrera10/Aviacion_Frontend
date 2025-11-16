@@ -1,0 +1,73 @@
+<div class="perfil-container">
+
+  <h2 class="titulo">Mi Perfil</h2>
+
+  <div class="avatar-wrapper">
+    <img
+      class="avatar"
+      [src]="'https://ui-avatars.com/api/?name=' + form.nombre + '+' + form.apellido + '&size=160&background=003060&color=fff'"
+      alt="avatar"
+    />
+  </div>
+
+  <div class="formulario">
+
+    <!-- Nombre -->
+    <div class="campo">
+      <label>Nombre</label>
+      <input type="text" [(ngModel)]="form.nombre" [disabled]="esAlumno" />
+    </div>
+
+    <!-- Apellido -->
+    <div class="campo">
+      <label>Apellido</label>
+      <input type="text" [(ngModel)]="form.apellido" [disabled]="esAlumno" />
+    </div>
+
+    <!-- Rol -->
+    <div class="campo">
+      <label>Rol</label>
+      <input type="text" [(ngModel)]="form.rol" disabled />
+    </div>
+
+    <!-- Correo -->
+    <div class="campo">
+      <label>Correo</label>
+      <input type="email" [(ngModel)]="form.correo" placeholder="ejemplo@correo.com" />
+    </div>
+
+    <!-- Teléfono -->
+    <div class="campo">
+      <label>Teléfono</label>
+      <input type="text" [(ngModel)]="form.telefono" placeholder="1234-5678" />
+    </div>
+
+    <!-- Contraseña opcional -->
+<div class="campo pass-wrapper">
+  <label>
+    Nueva Contraseña 
+    <span style="font-size: 0.8rem; color: gray;">(Opcional)</span>
+  </label>
+
+  <input
+    [type]="mostrarContrasena ? 'text' : 'password'"
+    [(ngModel)]="form.nuevaContrasena"
+    placeholder="Dejar vacío para no cambiar"
+  />
+
+  <!-- ÍCONO DE MOSTRAR/OCULTAR -->
+  <i
+    class="icono bi"
+    [class.bi-eye]="!mostrarContrasena"
+    [class.bi-eye-slash]="mostrarContrasena"
+    (click)="toggleContrasena()"
+  ></i>
+</div>
+
+
+    <button class="perfil-btn" (click)="guardarCambios()">
+      Guardar cambios
+    </button>
+
+  </div>
+</div>

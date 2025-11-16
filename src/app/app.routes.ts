@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './components/auth/login.component';
 import { authGuard } from './services/auth.guard';
 
+import { PerfilComponent } from './components/shared/perfil/perfil';
+
 // Guards por rol
 import { adminGuard } from './services/admin.guard';
 import { tutorGuard } from './services/tutor.guard';
@@ -33,6 +35,7 @@ export const routes: Routes = [
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+   { path: 'perfil', component: PerfilComponent, canActivate: [authGuard] },
 
   // =========================================================================================
   // ADMINISTRADOR
@@ -55,6 +58,8 @@ export const routes: Routes = [
       { path: 'vuelos/editar/:id', component: VuelosFormComponent },
 
       { path: 'reportes', component: ReportesComponent },
+
+
     ]
   },
 
@@ -69,6 +74,8 @@ export const routes: Routes = [
       //{ path: 'horario', component: TutorHorarioComponent },
       { path: 'vuelos', component: VuelosListComponent }, 
       { path: 'horario', component:  TutorHorarioComponent, canActivate: [authGuard] },// filtro por tutor luego
+
+
     ]
   },
 
@@ -80,11 +87,14 @@ export const routes: Routes = [
     canActivate: [authGuard, alumnoGuard],
     children: [
    { path: 'dashboard', component: DashboardAlumnoComponent },
+   
+
 
       //{ path: 'mis-vuelos', component: MisVuelosComponent },
     ]
   },
 
   // Fallback
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: 'login' },
+ 
 ];
