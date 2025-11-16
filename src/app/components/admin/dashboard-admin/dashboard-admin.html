@@ -1,0 +1,13 @@
+<div class="dashboard-container">
+  <h1 class="titulo">Panel del Administrador</h1>
+  <p class="subtitulo">Control total del sistema de aviación.</p>
+
+  <div class="card-grid">
+    <div class="card" *ngFor="let item of dashboardItems" (click)="ir(item.ruta)">
+      <div class="icono">{{ item.icono }}</div>
+      <h3 class="card-title">{{ item.titulo }}</h3>
+      <p class="card-description">{{ item.descripcion }}</p>
+      <button class="btn-primary">Ir a {{ item.titulo }}</button>
+    </div>
+  </div>
+</div>
