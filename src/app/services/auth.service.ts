@@ -13,15 +13,19 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(correo: string, contrasena: string) {
-    return this.http.post<any>(`${this.apiUrl}/login`, { correo, contrasena })
-      .pipe(
-        tap(response => {
-          localStorage.setItem('token', response.token);
-          const rol = response.usuario.rol;
-          localStorage.setItem('rol', rol);
-          this.rolSubject.next(rol);
-        })
-      );
+    return this.http.post<any>(`${this.apiUrl}/login`, { correo, contrasena }).pipe(
+      tap((response) => {
+        localStorage.setItem('token', response.token);
+
+        const usuario = response.usuario;
+
+        localStorage.setItem('rol', usuario.rol);
+        localStorage.setItem('id_usuario', usuario.idUsuario || usuario.id);
+        localStorage.setItem('nombre_usuario', usuario.nombre);
+
+        this.rolSubject.next(usuario.rol);
+      })
+    );
   }
 
   logout() {

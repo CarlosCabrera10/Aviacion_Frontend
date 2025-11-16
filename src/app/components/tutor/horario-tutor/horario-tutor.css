@@ -1,0 +1,197 @@
+/* ================================
+   CONTENEDOR GENERAL
+================================ */
+.calendar-container {
+  background: #F5F7FA;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+/* ================================
+   TÍTULO DEL MES/SEMANA
+================================ */
+.fc-toolbar-title {
+  font-size: 1.6rem !important;
+  color: #004E92 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.5px;
+}
+
+/* ================================
+   SEPARACIÓN ENTRE BOTONES
+================================ */
+.fc .fc-button {
+  background: #004E92 !important;
+  border: none !important;
+  padding: 0.45rem 1rem !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  margin-right: 6px !important;
+  transition: transform 0.15s ease;
+}
+
+.fc .fc-button:hover {
+  background: #001F3F !important;
+  transform: translateY(-2px);
+}
+
+/* Último botón del grupo sin margen extra */
+.fc .fc-button-group .fc-button:last-child {
+  margin-right: 0 !important;
+}
+
+/* Botón HOY en dorado */
+.fc .fc-today-button {
+  background: #C9A227 !important;
+  color: #fff !important;
+}
+
+.fc .fc-today-button:hover {
+  background: #b8931f !important;
+}
+
+/* Margin inferior del toolbar */
+.fc-header-toolbar {
+  margin-bottom: 15px !important;
+}
+
+/* ================================
+   ENCABEZADOS DE DÍAS (Lun, Mar…)
+================================ */
+.fc-col-header-cell {
+  background: #F0F2F5 !important;
+  color: #004E92 !important;
+  font-weight: 700 !important;
+  padding: 12px 0 !important;
+  border-bottom: 2px solid #D6D6D6 !important;
+}
+
+/* ================================
+   CUADRÍCULA DEL CALENDARIO
+================================ */
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border-color: #e5e5e5 !important;
+}
+
+/* Hover de celdas */
+.fc .fc-daygrid-day:hover {
+  background: #F0F4F8 !important;
+}
+
+/* Día actual */
+.fc .fc-day-today {
+  background: rgba(201, 162, 39, 0.15) !important;
+  border: 2px solid #C9A227 !important;
+}
+
+/* ================================
+   EVENTOS (VUELOS)
+================================ */
+.fc-event {
+  border: none !important;
+  padding: 6px 10px !important;
+  font-size: 0.9rem !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  transition: transform 0.15s ease;
+}
+
+/* Colores por estado */
+.fc-event[data-color="#0d6efd"] {
+  background: #004E92 !important; /* Programado */
+  color: white !important;
+}
+
+.fc-event[data-color="#198754"] {
+  background: #198754 !important; /* Completado */
+}
+
+.fc-event[data-color="#dc3545"] {
+  background: #C9A227 !important; /* Cancelado */
+}
+
+/* Hover en eventos */
+.fc-event:hover {
+  opacity: 0.9 !important;
+  cursor: pointer;
+  transform: scale(1.03);
+}
+
+/* Texto del evento */
+.fc-event-title {
+  font-weight: 600 !important;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .calendar-container {
+    padding: 15px;
+  }
+
+  .fc-toolbar-title {
+    font-size: 1.3rem !important;
+  }
+
+  .fc .fc-button {
+    padding: 0.35rem 0.7rem !important;
+    font-size: 0.8rem !important;
+  }
+}
+/* ================================
+   TARJETAS DE ESTADÍSTICAS
+================================ */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.stat-card {
+  padding: 18px;
+  border-radius: 14px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.stat-title {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+/* COLORES */
+.stat-card.azul {
+  background: linear-gradient(135deg, #004E92, #001F3F);
+}
+
+.stat-card.verde {
+  background: linear-gradient(135deg, #198754, #145c39);
+}
+
+.stat-card.rojo {
+  background: linear-gradient(135deg, #dc3545, #a92732);
+}
+
+.stat-card.dorado {
+  background: linear-gradient(135deg, #C9A227, #9f7b1b);
+}

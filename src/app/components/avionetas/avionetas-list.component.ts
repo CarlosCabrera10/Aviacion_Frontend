@@ -74,11 +74,11 @@ export class AvionetasListComponent implements OnInit {
   }
 
   nueva() {
-    this.router.navigate(['/avionetas/nueva']);
+    this.router.navigate(['admin/avionetas/nueva']);
   }
 
   editar(id: number) {
-    this.router.navigate(['/avionetas/editar', id]);
+    this.router.navigate(['admin/avionetas/editar', id]);
   }
 
   eliminar(id: number) {

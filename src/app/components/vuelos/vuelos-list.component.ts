@@ -11,7 +11,7 @@ import { RouterModule, Router } from '@angular/router';
   template: `
     <div class="container">
       <h2>Vuelos</h2>
-      <button class="btn btn-primary mb-3" routerLink="/vuelos/nuevo">Nuevo Vuelo</button>
+      <button class="btn btn-primary mb-3" (click)="crear()">Nuevo</button>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -58,8 +58,13 @@ export class VuelosListComponent implements OnInit {
   }
 
   editar(id?: number) {
-    if (id) this.router.navigate(['/vuelos/editar', id]);
+    if (id) this.router.navigate(['admin/vuelos/editar', id]);
   }
+
+crear() {
+    this.router.navigate(['admin/vuelos/nuevo']);
+  }
+
 
   eliminar(id?: number) {
     if (!id) return;

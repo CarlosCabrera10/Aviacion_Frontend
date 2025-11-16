@@ -42,4 +42,5 @@ export class VuelosService {
   listarPorTutor(idTutor: number): Observable<Vuelo[]> {
     return this.http.get<Vuelo[]>(`${this.apiUrl}/tutor/${idTutor}`, { headers: this.getAuthHeaders() });
   }
+  
 }
