@@ -1,0 +1,38 @@
+<h2 class="titulo">Mis Alumnos</h2>
+
+<div class="filtros">
+  <input type="text" placeholder="Buscar alumno por nombre o correo..." [(ngModel)]="filtro"
+    (input)="aplicarFiltros()" />
+</div>
+
+<div *ngIf="loading" class="loading">Cargando...</div>
+
+<div class="lista" *ngIf="!loading">
+
+  <div *ngFor="let a of paginados()" class="card-alumno">
+
+    <img class="avatar"
+      [src]="'https://ui-avatars.com/api/?name=' + a.nombre + '+' + a.apellido + '&background=003060&color=fff'" />
+
+    <div class="info">
+      <strong>{{ a.nombre }} {{ a.apellido }}</strong>
+      <p>{{ a.correo }}</p>
+      <p>📱 {{ a.telefono }}</p>
+    </div>
+<button class="btn-detalle" (click)="verDetalle(a)">
+  Ver historial
+</button>
+
+
+  </div>
+
+</div>
+
+<!-- PAGINACION -->
+<div class="paginacion" *ngIf="alumnosFiltrados.length > size">
+  <button (click)="cambiarPagina(-1)">⬅ Anterior</button>
+
+  <span>Página {{ pagina + 1 }} de {{ (alumnosFiltrados.length / size) | number:'1.0-0' }}</span>
+
+  <button (click)="cambiarPagina(1)">Siguiente ➡</button>
+</div>

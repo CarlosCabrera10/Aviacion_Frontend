@@ -1,0 +1,126 @@
+.contenedor {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.titulo {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #003060;
+}
+
+.filtros {
+  margin: 15px 0;
+  display: flex;
+  gap: 10px;
+}
+
+.filtros input,
+.filtros select {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.btn-dorado {
+  background: #c9a227;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-azul {
+  background: #003060;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+.tabla-wrapper {
+  margin-top: 15px;
+  overflow: auto;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla th {
+  background: #003060;
+  color: white;
+  padding: 10px;
+}
+
+.tabla td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+.programado {
+  background: #ffc107;
+  color: #000;
+}
+
+.completado {
+  background: #198754;
+  color: white;
+}
+
+.cancelado {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-accion {
+  background: #004e92;
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.paginacion {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+
+/* Botones */
+.btn-accion {
+  background: #004e92;
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.btn-detalle {
+  background: #c9a227;
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.acciones-col {
+  display: flex;
+  gap: 8px;
+}

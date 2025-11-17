@@ -1,13 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-
-interface DashboardItem {
-  titulo: string;
-  descripcion: string;
-  icono: string;
-  ruta: string;
-}
+import { WeatherService } from '../../../services/weather.service';
 
 @Component({
   selector: 'app-dashboard-tutor',
@@ -16,32 +10,59 @@ interface DashboardItem {
   templateUrl: './dashboard-tutor.html',
   styleUrls: ['./dashboard-tutor.css']
 })
-export class DashboardTutorComponent {
+export class DashboardTutorComponent implements OnInit {
 
-  dashboardItems: DashboardItem[] = [
+  clima: any = null;
+  cargandoClima = true;
+
+  dashboardItems = [
     {
       titulo: 'Mi Horario de Vuelos',
-      descripcion: 'Consulta todos tus vuelos en un calendario moderno.',
-      icono: '📆',
+      descripcion: 'Consulta tus vuelos del mes en un calendario.',
       ruta: '/tutor/horario'
     },
     {
       titulo: 'Actualizar Vuelos',
       descripcion: 'Marca vuelos como completados o cancelados.',
-      icono: '🛫',
       ruta: '/tutor/vuelos'
     },
     {
-      titulo: 'Observaciones de Alumnos',
-      descripcion: 'Registra notas y evaluaciones de tus alumnos.',
-      icono: '📝',
-      ruta: '/tutor/observaciones'
+      titulo: 'Mapa Meteorológico',
+      descripcion: 'Visualiza el radar de clima en la zona de vuelo.',
+      ruta: '/tutor/clima'
     }
   ];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private weatherService: WeatherService
+  ) {}
+
+  ngOnInit(): void {
+  //  this.cargarClima();
+  }
 
   ir(ruta: string) {
     this.router.navigate([ruta]);
   }
+
+  /*
+cargarClima() {
+  this.cargandoClima = true;
+
+  const lat = 13.6894;   // Coordenadas del aeródromo / aeropuerto
+  const lon = -89.1872;
+
+  this.weatherService.climaActual(lat, lon).subscribe({
+    next: (data) => {
+      this.clima = data;
+      this.cargandoClima = false;
+    },
+    error: (err) => {
+      console.error("Error cargando clima:", err);
+      this.cargandoClima = false;
+    }
+  });
+} */
+
 }

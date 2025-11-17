@@ -1,0 +1,128 @@
+<div class="contenedor" *ngIf="!cargando && !error">
+
+
+
+  <h2 class="titulo">Detalle del Vuelo</h2>
+
+  <!-- CARD PRINCIPAL -->
+  <div class="card" *ngIf="vuelo">
+
+    <h3>Vuelo #{{ vuelo.idVuelo }}</h3>
+
+    <p><strong>Fecha:</strong> {{ vuelo.fecha }}</p>
+
+    <p><strong>Horario:</strong>
+      {{ vuelo.horaInicio || '---' }} - {{ vuelo.horaFin || '---' }}
+    </p>
+
+    <p><strong>Estado:</strong> {{ vuelo.estado }}</p>
+
+    <p><strong>Avioneta:</strong>
+      {{ vuelo.codigoAvioneta ? vuelo.codigoAvioneta : 'Sin código' }}
+    </p>
+
+    <p *ngIf="vuelo.nombreEspacio">
+      <strong>Espacio:</strong> {{ vuelo.nombreEspacio }}
+    </p>
+
+    <p *ngIf="vuelo.nombreAlumno">
+      <strong>Alumno:</strong> {{ vuelo.nombreAlumno }}
+    </p>
+
+    <p *ngIf="vuelo.nombreTutor">
+      <strong>Tutor:</strong> {{ vuelo.nombreTutor }}
+    </p>
+
+  </div>
+
+ <!-- RADAR + TABLA DE RENDIMIENTO -->
+<div class="grid-panel">
+
+  <!-- RADAR -->
+  <div class="card">
+    <h3>Rendimiento</h3>
+
+    <p *ngIf="!rendimiento" class="no-data">Este vuelo no tiene rendimiento registrado.</p>
+
+    <canvas
+      *ngIf="radarData"
+      baseChart
+      [data]="radarData"
+      [options]="radarOptions"
+      [type]="'radar'">
+    </canvas>
+  </div>
+
+  <!-- TABLA -->
+  <div class="card" *ngIf="rendimiento">
+    <h3>Puntaje General</h3>
+
+    <p class="puntaje">{{ calcularPromedio() }}/10</p>
+
+    <table class="tabla-rendimiento">
+      <tr>
+        <th>Categoría</th>
+        <th>Puntaje</th>
+      </tr>
+
+      <tr>
+        <td>Aterrizaje</td>
+        <td>{{ rendimiento.tecnicaAterrizaje ?? 0 }}/10</td>
+      </tr>
+
+      <tr>
+        <td>Maniobras</td>
+        <td>{{ rendimiento.maniobras ?? 0 }}/10</td>
+      </tr>
+
+      <tr>
+        <td>Radio</td>
+        <td>{{ rendimiento.comunicacionRadio ?? 0 }}/10</td>
+      </tr>
+
+      <tr>
+        <td>Instrucciones</td>
+        <td>{{ rendimiento.seguimientoInstrucciones ?? 0 }}/10</td>
+      </tr>
+
+      <tr>
+        <td>Puntualidad</td>
+        <td>{{ rendimiento.puntualidad ?? 0 }}/10</td>
+      </tr>
+
+      <tr>
+        <td>Comportamiento</td>
+        <td>{{ rendimiento.comportamiento ?? 0 }}/10</td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+
+
+  <!-- COMENTARIOS -->
+  <div class="card" *ngIf="rendimiento">
+
+    <h3>Comentarios</h3>
+
+    <p *ngIf="rendimiento.comentarios; else noCom">
+      {{ rendimiento.comentarios }}
+    </p>
+
+    <ng-template #noCom>
+      <p class="no-data">Sin comentarios.</p>
+    </ng-template>
+
+  </div>
+
+</div>
+
+<!-- LOADING -->
+<div class="contenedor" *ngIf="cargando">
+  <p class="no-data">Cargando...</p>
+</div>
+
+<!-- ERROR -->
+<div class="contenedor" *ngIf="error">
+  <p class="error">{{ error }}</p>
+</div>

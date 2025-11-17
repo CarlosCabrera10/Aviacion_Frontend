@@ -53,13 +53,15 @@ export class SidebarComponent implements OnInit {
     }
 
     if (this.rol === 'Tutor') {
-      this.menuItems = [
-        { titulo: 'Dashboard', icono: '🏠', ruta: '/tutor/dashboard' },
-        { titulo: 'Mi Horario', icono: '📅', ruta: '/tutor/horario' },
-        { titulo: 'Actualizar Vuelos', icono: '🛫', ruta: '/tutor/vuelos' },
-        { titulo: 'Observaciones', icono: '📝', ruta: '/tutor/observaciones' }
-      ];
-    }
+  this.menuItems = [
+    { titulo: 'Dashboard', icono: '🏠', ruta: '/tutor/dashboard' },
+    { titulo: 'Mi Horario', icono: '📅', ruta: '/tutor/horario' },
+    { titulo: 'Actualizar Vuelos', icono: '🛫', ruta: '/tutor/vuelos' },
+    { titulo: 'Historial de Vuelos', icono: '📘', ruta: '/tutor/vuelos-historial' },
+    { titulo: 'Mis Alumnos', icono: '👨‍🎓', ruta: '/tutor/alumnos' }
+  ];
+}
+    
 
     if (this.rol === 'Alumno') {
       this.menuItems = [

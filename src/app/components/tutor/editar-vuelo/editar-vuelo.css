@@ -1,0 +1,115 @@
+:root {
+  --azul: #003060;
+  --azul-oscuro: #001a36;
+  --gris: #f2f4f7;
+  --dorado: #c9a227;
+}
+
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+}
+
+.titulo {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--azul);
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.8rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.seccion {
+  font-size: 1.4rem;
+  color: var(--azul);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+
+.full {
+  grid-column: span 2;
+}
+
+.input {
+  width: 100%;
+  padding: .8rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: var(--gris);
+}
+
+.btn-guardar {
+  margin-top: 1rem;
+  padding: .9rem 1.5rem;
+  background: var(--azul);
+  color: white;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn-guardar:hover {
+  background: var(--azul-oscuro);
+  transform: translateY(-2px);
+}
+
+.btn-dorado {
+  margin-top: 1rem;
+  padding: .9rem 1.5rem;
+  background: var(--dorado);
+  color: #fff;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn-dorado:hover {
+  background: #b6911c;
+}
+.btn-guardar {
+  margin-top: 1rem;
+  padding: .9rem 1.5rem;
+  background: #003060;
+  color: white;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: .2s;
+}
+
+.btn-guardar:hover {
+  background: #001a36;
+}
+
+.btn-dorado {
+  margin-top: 1rem;
+  padding: .9rem 1.5rem;
+  background: #d4a02d;
+  color: white;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: .2s;
+}
+
+.btn-dorado:hover {
+  background: #b58822;
+}
