@@ -51,13 +51,7 @@ import { Avioneta } from '../../models/avioneta.model';
           />
         </div>
 
-        <div class="form-row">
-          <label>Estado:</label>
-          <select name="estado" [(ngModel)]="avioneta.estado" required>
-            <option value="Activo">Activo</option>
-            <option value="Mantenimiento">Mantenimiento</option>
-          </select>
-        </div>
+
 
         <div *ngIf="mensajeError" class="avionetas-error">{{ mensajeError }}</div>
         <div *ngIf="mensajeExito" class="avionetas-success">{{ mensajeExito }}</div>
@@ -217,7 +211,7 @@ export class AvionetasFormComponent implements OnInit {
       this.avionetasService.actualizar(this.avioneta.idAvioneta, this.avioneta).subscribe({
         next: () => {
           this.mensajeExito = 'Avioneta actualizada correctamente.';
-          setTimeout(() => this.router.navigate(['/avionetas']), 1000);
+          setTimeout(() => this.router.navigate(['/admin/avionetas']), 1000);
         },
         error: () => this.mensajeError = 'Error al actualizar la avioneta.'
       });
@@ -225,7 +219,7 @@ export class AvionetasFormComponent implements OnInit {
       this.avionetasService.guardar(this.avioneta).subscribe({
         next: () => {
           this.mensajeExito = 'Avioneta guardada correctamente.';
-          setTimeout(() => this.router.navigate(['/avionetas']), 1000);
+          setTimeout(() => this.router.navigate(['/admin/avionetas']), 1000);
         },
         error: () => this.mensajeError = 'Error al guardar la avioneta.'
       });
@@ -233,6 +227,6 @@ export class AvionetasFormComponent implements OnInit {
   }
 
   cancelar() {
-    this.router.navigate(['/avionetas']);
+    this.router.navigate(['/admin/avionetas']);
   }
 }

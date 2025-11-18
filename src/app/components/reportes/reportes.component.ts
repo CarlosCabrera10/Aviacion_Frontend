@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
 
-Chart.register(...registerables); // 🔥 NECESARIO PARA QUE SE RENDERICEN LOS GRÁFICOS
+Chart.register(...registerables); // 🔥 necesario para renderizar gráficos
 
 @Component({
   selector: 'app-reportes-dashboard',
@@ -40,10 +40,12 @@ Chart.register(...registerables); // 🔥 NECESARIO PARA QUE SE RENDERICEN LOS G
   `,
   styles: [`
     .reportes-container {
-      padding: 20px;
-      width: 100%;
+      max-width: calc(100% - 200px); /* ancho total menos navbar */
+      margin-left: 200px;            /* espacio para el navbar */
+      padding: 2rem;
       background: #f4f6f9;
       box-sizing: border-box;
+      font-family: Arial, sans-serif;
     }
 
     h2 {
@@ -69,6 +71,16 @@ Chart.register(...registerables); // 🔥 NECESARIO PARA QUE SE RENDERICEN LOS G
     canvas {
       width: 100% !important;
       max-height: 380px;
+      display: block;
+    }
+
+    /* 🔹 Media query para pantallas pequeñas */
+    @media (max-width: 768px) {
+      .reportes-container {
+        max-width: 100%;
+        margin-left: 0;
+        padding: 1rem;
+      }
     }
   `]
 })
@@ -76,7 +88,6 @@ export class ReportesComponent implements OnInit {
 
   private apiUrl = 'http://localhost:8080/api/reportes';
 
-  // Referencias para destruir los charts
   chartDia: any;
   chartHora: any;
   chartAvionetas: any;
@@ -97,14 +108,9 @@ export class ReportesComponent implements OnInit {
     this.loadChartAlumnos();
   }
 
-  // ======================================
-  //         ACTIVIDAD POR DÍA
-  // ======================================
   loadChartDia() {
     this.http.get<any>(`${this.apiUrl}/actividad-por-dia`).subscribe(data => {
-
       if (this.chartDia) this.chartDia.destroy();
-
       this.chartDia = new Chart("chartDia", {
         type: 'line',
         data: {
@@ -119,18 +125,12 @@ export class ReportesComponent implements OnInit {
           }]
         }
       });
-
     });
   }
 
-  // ======================================
-  //         ACTIVIDAD POR HORA
-  // ======================================
   loadChartHora() {
     this.http.get<any>(`${this.apiUrl}/actividad-por-hora`).subscribe(data => {
-
       if (this.chartHora) this.chartHora.destroy();
-
       this.chartHora = new Chart("chartHora", {
         type: 'bar',
         data: {
@@ -142,18 +142,12 @@ export class ReportesComponent implements OnInit {
           }]
         }
       });
-
     });
   }
 
-  // ======================================
-  //         USO DE AVIONETAS
-  // ======================================
   loadChartAvionetas() {
     this.http.get<any>(`${this.apiUrl}/uso-avionetas`).subscribe(data => {
-
       if (this.chartAvionetas) this.chartAvionetas.destroy();
-
       this.chartAvionetas = new Chart("chartAvionetas", {
         type: 'pie',
         data: {
@@ -164,18 +158,12 @@ export class ReportesComponent implements OnInit {
           }]
         }
       });
-
     });
   }
 
-  // ======================================
-  //         TUTORES ACTIVOS
-  // ======================================
   loadChartTutores() {
     this.http.get<any>(`${this.apiUrl}/tutores-activos`).subscribe(data => {
-
       if (this.chartTutores) this.chartTutores.destroy();
-
       this.chartTutores = new Chart("chartTutores", {
         type: 'bar',
         data: {
@@ -187,18 +175,12 @@ export class ReportesComponent implements OnInit {
           }]
         }
       });
-
     });
   }
 
-  // ======================================
-  //         ALUMNOS ACTIVOS
-  // ======================================
   loadChartAlumnos() {
     this.http.get<any>(`${this.apiUrl}/alumnos-activos`).subscribe(data => {
-
       if (this.chartAlumnos) this.chartAlumnos.destroy();
-
       this.chartAlumnos = new Chart("chartAlumnos", {
         type: 'bar',
         data: {
@@ -210,7 +192,6 @@ export class ReportesComponent implements OnInit {
           }]
         }
       });
-
     });
   }
 }

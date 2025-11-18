@@ -30,4 +30,10 @@ export class AvionetasService {
   eliminar(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  desactivar(id: number): Observable<Avioneta> {
+    return this.http.put<Avioneta>(`${this.apiUrl}/${id}/desactivar`, {});
+  }
+
+
 }

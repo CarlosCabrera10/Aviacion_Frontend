@@ -32,6 +32,18 @@ export class DashboardAdminComponent {
       ruta: '/admin/avionetas'
     },
     {
+      titulo: 'Gestión de Mantenimientos',
+      descripcion: 'Supervisa y programa mantenimientos de las avionetas.',
+      icono: '🛠️',
+      ruta: '/admin/mantenimientos'
+    },
+    {
+      titulo: 'Espacios de Vuelo',
+      descripcion: 'Administra zonas y espacios aéreos disponibles para vuelo.',
+      icono: '🗺️',
+      ruta: '/admin/espacios'
+    },
+    {
       titulo: 'Programación de Vuelos',
       descripcion: 'Asigna vuelos a alumnos, tutores y avionetas.',
       icono: '🗓️',
@@ -42,7 +54,7 @@ export class DashboardAdminComponent {
       descripcion: 'Visualiza uso de avionetas, horas de vuelo y mapas térmicos.',
       icono: '📊',
       ruta: '/admin/reportes'
-    }
+    },
   ];
 
   constructor(private router: Router) {}

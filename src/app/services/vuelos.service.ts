@@ -7,12 +7,14 @@ import { Vuelo } from '../models/vuelos.model';
   providedIn: 'root'
 })
 export class VuelosService {
+
   private apiUrl = 'http://localhost:8080/api/vuelos';
 
   constructor(private http: HttpClient) {}
 
   private getAuthHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
+
     return new HttpHeaders({
       'Content-Type': 'application/json',
       ...(token ? { Authorization: `Bearer ${token}` } : {})
@@ -42,5 +44,4 @@ export class VuelosService {
   listarPorTutor(idTutor: number): Observable<Vuelo[]> {
     return this.http.get<Vuelo[]>(`${this.apiUrl}/tutor/${idTutor}`, { headers: this.getAuthHeaders() });
   }
-  
 }
