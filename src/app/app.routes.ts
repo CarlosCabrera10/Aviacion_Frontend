@@ -34,9 +34,11 @@ import { DetalleVueloComponent } from './components/tutor/detalle-vuelo/detalle-
 
 
 // Alumno (luego lo creas)
-
-
+import { RendimientoAlumnoComponent } from './components/alumno/rendimiento-alumno/rendimiento-alumno';
+import { DetalleVueloAlumnoComponent } from './components/alumno/vuelo-detalle/vuelo-detalle';
+import { HorarioAlumnoComponent } from './components/alumno/horario-alumno/horario-alumno';
 import { DashboardAlumnoComponent } from './components/alumno/dashboard-alumno/dashboard-alumno';
+import{ MisVuelosAlumnoComponent  } from './components/alumno/mis-vuelos-alumno/mis-vuelos-alumno';
 //import { MisVuelosComponent } from './components/alumno/mis-vuelos.component';
 
 export const routes: Routes = [
@@ -108,6 +110,10 @@ export const routes: Routes = [
     canActivate: [authGuard, alumnoGuard],
     children: [
    { path: 'dashboard', component: DashboardAlumnoComponent },
+  {path: 'rendimiento', component: RendimientoAlumnoComponent },
+  {path: 'vuelo/detalle/:id', component: DetalleVueloAlumnoComponent },
+  {path: 'horario', component: HorarioAlumnoComponent },
+  {path: 'mis-vuelos', component: MisVuelosAlumnoComponent },
    
 
 

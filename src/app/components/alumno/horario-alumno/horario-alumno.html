@@ -1,0 +1,33 @@
+<div class="stats-container">
+
+  <div class="stat-card azul">
+    <div class="stat-title">Programados</div>
+    <div class="stat-value">{{ stats.programados }}</div>
+  </div>
+
+  <div class="stat-card verde">
+    <div class="stat-title">Completados</div>
+    <div class="stat-value">{{ stats.completados }}</div>
+  </div>
+
+  <div class="stat-card rojo">
+    <div class="stat-title">Cancelados</div>
+    <div class="stat-value">{{ stats.cancelados }}</div>
+  </div>
+
+  <div class="stat-card dorado">
+    <div class="stat-title">Total del Mes</div>
+    <div class="stat-value">{{ stats.total }}</div>
+  </div>
+
+</div>
+
+
+<div class="calendar-container">
+
+  <h2 class="titulo">Mi Horario de Vuelos</h2>
+  <p class="subtitulo">Consulta tus vuelos del mes o usa la vista semanal.</p>
+
+  <full-calendar [options]="calendarOptions"></full-calendar>
+
+</div>

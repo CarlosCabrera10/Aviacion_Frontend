@@ -66,9 +66,12 @@ export class SidebarComponent implements OnInit {
     if (this.rol === 'Alumno') {
       this.menuItems = [
         { titulo: 'Dashboard', icono: '🏠', ruta: '/alumno/dashboard' },
-        { titulo: 'Mis Vuelos', icono: '📅', ruta: '/alumno/mis-vuelos' },
-        { titulo: 'Historial', icono: '📘', ruta: '/alumno/historial' },
-        { titulo: 'Notificaciones', icono: '🔔', ruta: '/alumno/notificaciones' }
+        { titulo: 'Notificaciones', icono: '🔔', ruta: '/alumno/notificaciones' },
+        { titulo: 'Rendimiento', icono: '📊', ruta: '/alumno/rendimiento' },
+        { titulo: 'Mi Horario', icono: '📅', ruta: '/alumno/horario' },
+        { titulo: 'Mis Vuelos', icono: '🛫', ruta: '/alumno/mis-vuelos' }
+        
+
       ];
     }
   }

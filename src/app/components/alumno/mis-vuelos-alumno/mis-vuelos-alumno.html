@@ -1,0 +1,113 @@
+<div class="contenedor">
+
+  <h2 class="titulo">Mis Vuelos</h2>
+
+  <!-- =======================
+         FILTROS
+  ======================== -->
+  <div class="filtros">
+
+    <input type="date"
+           [(ngModel)]="filtroFecha"
+           (change)="aplicarFiltros()">
+
+    <select [(ngModel)]="filtroTutor" (change)="aplicarFiltros()">
+      <option value="">Todos los tutores</option>
+      <option *ngFor="let v of vuelosTotales" [value]="v.nombreTutor">
+        {{ v.nombreTutor }}
+      </option>
+    </select>
+
+    <select [(ngModel)]="filtroAvioneta" (change)="aplicarFiltros()">
+      <option value="">Todas las avionetas</option>
+      <option *ngFor="let v of vuelosTotales" [value]="v.codigoAvioneta">
+        {{ v.codigoAvioneta }}
+      </option>
+    </select>
+
+    <button class="btn-limpiar" (click)="limpiarFiltros()">Limpiar</button>
+
+  </div>
+
+  <!-- =======================
+         TABLA DE VUELOS
+  ======================== -->
+  <table class="tabla" *ngIf="vuelosPagina.length > 0">
+
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Horario</th>
+        <th>Avioneta</th>
+        <th>Tutor</th>
+        <th>Estado</th>
+        <th>Detalle</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let v of vuelosPagina">
+
+        <td>{{ v.fecha }}</td>
+        <td>{{ v.horaInicio }} - {{ v.horaFin }}</td>
+        <td>{{ v.codigoAvioneta }}</td>
+        <td>{{ v.nombreTutor }}</td>
+
+        <td>
+          <span class="badge"
+            [class.completado]="v.estado === 'Completado'"
+            [class.programado]="v.estado === 'Programado'"
+            [class.cancelado]="v.estado === 'Cancelado'">
+            {{ v.estado }}
+          </span>
+        </td>
+
+        <td>
+          <button class="btn-detalle" (click)="verDetalle(v.idVuelo)">
+            Ver detalle
+          </button>
+        </td>
+
+      </tr>
+    </tbody>
+
+  </table>
+
+  <p class="no-data" *ngIf="vuelosPagina.length === 0">
+    No hay vuelos para mostrar.
+  </p>
+
+  <!-- =======================
+         PAGINACIÓN
+  ======================== -->
+  <div class="pagination-container" *ngIf="totalPaginas > 1">
+
+    <button class="page-btn"
+            (click)="cambiarPagina(-1)"
+            [disabled]="paginaActual === 0">
+      ‹
+    </button>
+
+    <div class="page-numbers">
+      <span *ngFor="let p of [].constructor(totalPaginas); let i = index"
+            (click)="irPagina(i)"
+            [class.active]="paginaActual === i">
+        {{ i + 1 }}
+      </span>
+    </div>
+
+    <button class="page-btn"
+            (click)="cambiarPagina(1)"
+            [disabled]="paginaActual === totalPaginas - 1">
+      ›
+    </button>
+
+    <select class="size-selector" [(ngModel)]="size" (change)="paginar()">
+      <option [value]="10">10</option>
+      <option [value]="20">20</option>
+      <option [value]="50">50</option>
+    </select>
+
+  </div>
+
+</div>

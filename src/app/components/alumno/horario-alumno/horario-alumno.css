@@ -1,0 +1,118 @@
+/* ================================
+   CONTENEDOR GENERAL
+================================ */
+.calendar-container {
+  background: #F5F7FA;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+/* ================================
+   TITULOS
+================================ */
+.titulo {
+  text-align: center;
+  font-size: 2rem;
+  color: #003060;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.subtitulo {
+  text-align: center;
+  color: #666;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+/* ================================
+   FULLCALENDAR
+================================ */
+.fc-toolbar-title {
+  font-size: 1.6rem !important;
+  color: #004E92 !important;
+  font-weight: 700 !important;
+}
+
+.fc .fc-button {
+  background: #004E92 !important;
+  border: none !important;
+  padding: 0.45rem 1rem !important;
+  border-radius: 8px !important;
+  margin-right: 6px !important;
+}
+
+.fc .fc-button:hover {
+  background: #001F3F !important;
+  transform: translateY(-2px);
+}
+
+.fc .fc-today-button {
+  background: #C9A227 !important;
+}
+
+/* ================================
+   ESTADISTICAS
+================================ */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.stat-card {
+  padding: 18px;
+  border-radius: 14px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.stat-title {
+  opacity: 0.9;
+  margin-bottom: 6px;
+}
+
+.stat-value {
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+/* COLORES */
+.azul {
+  background: linear-gradient(135deg, #004E92, #001F3F);
+}
+
+.verde {
+  background: linear-gradient(135deg, #198754, #145c39);
+}
+
+.rojo {
+  background: linear-gradient(135deg, #dc3545, #a92732);
+}
+
+.dorado {
+  background: linear-gradient(135deg, #C9A227, #9f7b1b);
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .calendar-container {
+    padding: 15px;
+  }
+
+  .fc-toolbar-title {
+    font-size: 1.3rem !important;
+  }
+
+  .fc .fc-button {
+    padding: 0.35rem 0.7rem !important;
+    font-size: 0.8rem !important;
+  }
+}

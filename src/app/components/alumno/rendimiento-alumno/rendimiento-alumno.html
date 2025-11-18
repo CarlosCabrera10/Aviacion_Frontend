@@ -1,0 +1,178 @@
+<div class="contenedor">
+
+  <!-- =========================
+         TÍTULO PRINCIPAL
+  ========================== -->
+  <h2 class="titulo">Mi Rendimiento como Alumno</h2>
+
+
+  <!-- =========================
+          CARD DEL ALUMNO
+  ========================== -->
+  <div class="alumno-card" *ngIf="alumno">
+    <img class="avatar"
+      [src]="'https://ui-avatars.com/api/?name=' + alumno.nombre + '+' + alumno.apellido + '&background=003060&color=fff'" />
+
+    <div class="info">
+      <h3>{{ alumno.nombre }} {{ alumno.apellido }}</h3>
+      <p><strong>Email:</strong> {{ alumno.correo }}</p>
+      <p><strong>Teléfono:</strong> {{ alumno.telefono }}</p>
+    </div>
+  </div>
+
+
+  <!-- =========================
+                KPIs
+  ========================== -->
+  <div class="kpi-grid">
+
+    <div class="kpi-card">
+      <h4>Total de Vuelos</h4>
+      <p>{{ totalVuelos }}</p>
+    </div>
+
+    <div class="kpi-card completados">
+      <h4>Completados</h4>
+      <p>{{ completados }}</p>
+    </div>
+
+    <div class="kpi-card programados">
+      <h4>Programados</h4>
+      <p>{{ programados }}</p>
+    </div>
+
+    <div class="kpi-card cancelados">
+      <h4>Cancelados</h4>
+      <p>{{ cancelados }}</p>
+    </div>
+  </div>
+
+
+  <!-- =========================
+           GRÁFICAS 2×2
+  ========================== -->
+  <div class="graficas-2x2">
+
+    <!-- DONA -->
+    <div class="grafica">
+      <h3 class="subtitulo">Distribución de Vuelos</h3>
+      <canvas baseChart [data]="doughnutData" [options]="doughnutOptions" type="doughnut"></canvas>
+    </div>
+
+    <!-- RADAR -->
+    <div class="grafica">
+      <h3 class="subtitulo">Rendimiento General</h3>
+      <canvas baseChart [data]="radarData" [options]="radarOptions" type="radar"></canvas>
+    </div>
+
+    <!-- BARRAS -->
+    <div class="grafica">
+      <h3 class="subtitulo">Avionetas más Usadas</h3>
+      <canvas baseChart [data]="barData" [options]="barOptions" type="bar"></canvas>
+    </div>
+
+    <!-- LÍNEAS -->
+    <div class="grafica">
+      <h3 class="subtitulo">Vuelos por Fecha</h3>
+      <canvas baseChart [data]="lineData" [options]="lineOptions" type="line"></canvas>
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+              FILTROS
+  ========================== -->
+  <h3 class="subtitulo subtitulo-margen">Filtros</h3>
+
+  <div class="filtros">
+
+    <!-- FECHA -->
+    <input type="date" [(ngModel)]="filtroFecha" (change)="buscarPorFecha()">
+
+    <!-- ESTADO -->
+    <select [(ngModel)]="filtroEstado" (change)="filtrar()">
+      <option value="">Todos los estados</option>
+      <option value="Programado">Programado</option>
+      <option value="Completado">Completado</option>
+      <option value="Cancelado">Cancelado</option>
+    </select>
+
+    <!-- BOTONES -->
+    <button class="btn-limpiar" (click)="limpiarFiltros()">Limpiar</button>
+    <button class="btn-limpiar" (click)="mostrarUltimos5()">Últimos 5</button>
+  </div>
+
+
+  <!-- =========================
+          TABLA HISTORIAL
+  ========================== -->
+  <h3 class="subtitulo subtitulo-margen">Historial de Vuelos</h3>
+
+  <div class="tabla-contenedor" *ngIf="vuelosPagina.length > 0">
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Avioneta</th>
+          <th>Estado</th>
+          <th>Detalle</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let v of vuelosPagina">
+          <td>{{ v.fecha }}</td>
+          <td>{{ v.horaInicio }} - {{ v.horaFin }}</td>
+          <td>{{ v.codigoAvioneta }}</td>
+
+          <td>
+            <span class="badge" [class.completado-b]="v.estado === 'Completado'"
+              [class.programado-b]="v.estado === 'Programado'" [class.cancelado-b]="v.estado === 'Cancelado'">
+              {{ v.estado }}
+            </span>
+          </td>
+
+          <td>
+            <button class="btn-detalle" [routerLink]="['/alumno/vuelo/detalle', v.idVuelo]">
+              Ver detalle
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="no-data" *ngIf="vuelosPagina.length === 0">
+    No hay vuelos para mostrar.
+  </p>
+
+
+  <!-- =========================
+              PAGINACIÓN
+  ========================== -->
+  <div class="pagination-container" *ngIf="totalPaginas > 1">
+
+    <button class="page-btn" (click)="cambiarPagina(-1)" [disabled]="paginaActual === 0">‹</button>
+
+    <div class="page-numbers">
+      <span *ngFor="let p of [].constructor(totalPaginas); let i = index" (click)="irPagina(i)"
+        [class.active]="paginaActual === i">
+        {{ i + 1 }}
+      </span>
+    </div>
+
+    <button class="page-btn" (click)="cambiarPagina(1)" [disabled]="paginaActual === totalPaginas - 1">
+      ›
+    </button>
+
+    <select class="size-selector" [(ngModel)]="size" (change)="paginar()">
+      <option [value]="10">10</option>
+      <option [value]="20">20</option>
+      <option [value]="50">50</option>
+    </select>
+
+  </div>
+
+</div>
