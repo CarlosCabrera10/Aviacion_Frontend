@@ -16,6 +16,10 @@ import { VuelosListComponent } from './components/vuelos/vuelos-list.component';
 import { VuelosFormComponent } from './components/vuelos/vuelos-form.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { DashboardAdminComponent } from './components/admin/dashboard-admin/dashboard-admin';
+import { MantenimientoListComponent } from './components/mantenimiento/mantenimiento-list.component';
+import { MantenimientoFormComponent } from './components/mantenimiento/mantenimiento-form.component';
+import { EspaciosVueloListComponent } from './components/espacio_vuelo/espaciovuelo-list.component';
+import { EspaciosVueloFormComponent } from './components/espacio_vuelo/espaciovuelo-form.component';
 
 
 // Tutor
@@ -54,6 +58,14 @@ export const routes: Routes = [
       { path: 'vuelos/nuevo', component: VuelosFormComponent },
       { path: 'vuelos/editar/:id', component: VuelosFormComponent },
 
+      { path: 'mantenimientos', component: MantenimientoListComponent },          
+      { path: 'mantenimientos/form', component: MantenimientoFormComponent },     
+      { path: 'mantenimientos/form/:id', component: MantenimientoFormComponent },  
+
+      {path: 'espacios', component: EspaciosVueloListComponent },
+      {path: 'espacios/nuevo', component: EspaciosVueloFormComponent },
+      {path: 'espacios/:id', component: EspaciosVueloFormComponent },
+      
       { path: 'reportes', component: ReportesComponent },
     ]
   },

@@ -47,6 +47,8 @@ export class SidebarComponent implements OnInit {
         { titulo: 'Dashboard', icono: '🏠', ruta: '/admin/dashboard' },
         { titulo: 'Usuarios', icono: '👥', ruta: '/admin/usuarios' },
         { titulo: 'Avionetas', icono: '✈️', ruta: '/admin/avionetas' },
+        { titulo: 'Espacios', icono: '🗺️', ruta: '/admin/espacios' },
+        { titulo: 'Mantenimiento', icono: '🛠️', ruta: '/admin/mantenimientos' },
         { titulo: 'Vuelos', icono: '🛫', ruta: '/admin/vuelos' },
         { titulo: 'Reportes', icono: '📊', ruta: '/admin/reportes' }
       ];
