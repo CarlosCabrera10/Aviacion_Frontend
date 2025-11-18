@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './components/auth/login.component';
 import { authGuard } from './services/auth.guard';
 
+import { PerfilComponent } from './components/shared/perfil/perfil';
+
 // Guards por rol
 import { adminGuard } from './services/admin.guard';
 import { tutorGuard } from './services/tutor.guard';
@@ -22,21 +24,32 @@ import { EspaciosVueloListComponent } from './components/espacio_vuelo/espaciovu
 import { EspaciosVueloFormComponent } from './components/espacio_vuelo/espaciovuelo-form.component';
 
 
+
 // Tutor
 import { DashboardTutorComponent } from './components/tutor/dashboard-tutor/dashboard-tutor';
 import { TutorHorarioComponent } from './components/tutor/horario-tutor/horario-tutor';
-//import { TutorHorarioComponent } from './components/tutor/horario-tutor.component';
+import { VuelosTutorComponent } from './components/tutor/vuelos-tutor/vuelos-tutor';
+import { EditarVueloComponent } from './components/tutor/editar-vuelo/editar-vuelo';
+import { AlumnosTutorComponent } from './components/tutor/alumnos-tutor/alumnos-tutor';
+import { DetalleAlumnoComponent } from './components/tutor/detalle-alumno/detalle-alumno';
+import { DetalleVueloComponent } from './components/tutor/detalle-vuelo/detalle-vuelo';
+
+
+
 
 // Alumno (luego lo creas)
-
-
+import { RendimientoAlumnoComponent } from './components/alumno/rendimiento-alumno/rendimiento-alumno';
+import { DetalleVueloAlumnoComponent } from './components/alumno/vuelo-detalle/vuelo-detalle';
+import { HorarioAlumnoComponent } from './components/alumno/horario-alumno/horario-alumno';
 import { DashboardAlumnoComponent } from './components/alumno/dashboard-alumno/dashboard-alumno';
+import{ MisVuelosAlumnoComponent  } from './components/alumno/mis-vuelos-alumno/mis-vuelos-alumno';
 //import { MisVuelosComponent } from './components/alumno/mis-vuelos.component';
 
 export const routes: Routes = [
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+   { path: 'perfil', component: PerfilComponent, canActivate: [authGuard] },
 
   // =========================================================================================
   // ADMINISTRADOR
@@ -67,6 +80,8 @@ export const routes: Routes = [
       {path: 'espacios/:id', component: EspaciosVueloFormComponent },
       
       { path: 'reportes', component: ReportesComponent },
+
+
     ]
   },
 
@@ -74,15 +89,30 @@ export const routes: Routes = [
   // TUTOR (Instructor)
   // =========================================================================================
   {
-    path: 'tutor',
-    canActivate: [authGuard, tutorGuard],
-    children: [
-      { path: 'dashboard', component: DashboardTutorComponent },
-      //{ path: 'horario', component: TutorHorarioComponent },
-      { path: 'vuelos', component: VuelosListComponent }, 
-      { path: 'horario', component:  TutorHorarioComponent, canActivate: [authGuard] },// filtro por tutor luego
-    ]
-  },
+  path: 'tutor',
+  canActivate: [authGuard, tutorGuard],
+  children: [
+    { path: 'dashboard', component: DashboardTutorComponent },
+    { path: 'horario', component: TutorHorarioComponent },
+
+    // Listado de vuelos para actualizar
+    { path: 'vuelos', component: VuelosTutorComponent },
+
+    // editar vuelo
+    { path: 'vuelos/editar/:id', component: EditarVueloComponent },
+
+    // historial de vuelos
+    { path: 'vuelos-historial', component: VuelosTutorComponent },
+
+    // listado de alumnos
+    { path: 'alumnos', component: AlumnosTutorComponent },
+  
+
+    // detalle alumno (lo activamos más adelante)
+    { path: 'alumnos/:id', component: DetalleAlumnoComponent },
+     { path: 'vuelos/detalle/:id', component: DetalleVueloComponent }
+  ]
+},
 
   // =========================================================================================
   // ALUMNO
@@ -92,11 +122,18 @@ export const routes: Routes = [
     canActivate: [authGuard, alumnoGuard],
     children: [
    { path: 'dashboard', component: DashboardAlumnoComponent },
+  {path: 'rendimiento', component: RendimientoAlumnoComponent },
+  {path: 'vuelo/detalle/:id', component: DetalleVueloAlumnoComponent },
+  {path: 'horario', component: HorarioAlumnoComponent },
+  {path: 'mis-vuelos', component: MisVuelosAlumnoComponent },
+   
+
 
       //{ path: 'mis-vuelos', component: MisVuelosComponent },
     ]
   },
 
   // Fallback
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: 'login' },
+ 
 ];

@@ -1,0 +1,65 @@
+<div class="contenedor" *ngIf="!cargando">
+
+  <h2 class="titulo">Detalle del Vuelo</h2>
+
+  <!-- CARD PRINCIPAL -->
+  <div class="card-detalle">
+
+    <div class="fila">
+      <p><strong>Fecha:</strong> {{ vuelo?.fecha }}</p>
+      <p><strong>Horario:</strong> {{ vuelo?.horaInicio }} - {{ vuelo?.horaFin }}</p>
+      <p><strong>Estado:</strong>
+        <span class="badge"
+          [class.completado]="vuelo?.estado === 'Completado'"
+          [class.programado]="vuelo?.estado === 'Programado'"
+          [class.cancelado]="vuelo?.estado === 'Cancelado'">
+          {{ vuelo?.estado }}
+        </span>
+      </p>
+    </div>
+
+    <div class="fila">
+      <p><strong>Avioneta:</strong> {{ vuelo?.codigoAvioneta }}</p>
+      <p><strong>Tutor:</strong> {{ vuelo?.nombreTutor }}</p>
+    </div>
+
+    <div class="fila">
+      <p><strong>Observaciones:</strong></p>
+      <div class="observacion-box">{{ vuelo?.observacion || 'Sin observaciones' }}</div>
+    </div>
+
+  </div>
+
+  <!-- RENDIMIENTO -->
+  <h3 class="subtitulo">Rendimiento del Vuelo</h3>
+
+  <div *ngIf="rendimiento; else sinRendimiento">
+
+    <div class="rend-grid">
+
+      <div class="rend-card">
+        <h4>Puntaje General</h4>
+        <p class="puntaje-general">{{ rendimiento.puntajeGeneral }}</p>
+      </div>
+
+      <div class="rend-card"><strong>Aterrizaje:</strong> {{ rendimiento.tecnicaAterrizaje }}</div>
+      <div class="rend-card"><strong>Maniobras:</strong> {{ rendimiento.maniobras }}</div>
+      <div class="rend-card"><strong>Radio:</strong> {{ rendimiento.comunicacionRadio }}</div>
+      <div class="rend-card"><strong>Instrucciones:</strong> {{ rendimiento.seguimientoInstrucciones }}</div>
+      <div class="rend-card"><strong>Puntualidad:</strong> {{ rendimiento.puntualidad }}</div>
+      <div class="rend-card"><strong>Comportamiento:</strong> {{ rendimiento.comportamiento }}</div>
+
+      <div class="rend-comentarios">
+        <strong>Comentarios:</strong>
+        <p>{{ rendimiento.comentarios || 'Sin comentarios' }}</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <ng-template #sinRendimiento>
+    <p class="sin-rendimiento">Este vuelo no tiene rendimiento registrado aún.</p>
+  </ng-template>
+
+</div>

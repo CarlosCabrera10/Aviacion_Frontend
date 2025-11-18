@@ -1,0 +1,130 @@
+:root {
+  --azul: #003060;
+  --azul-oscuro: #001a36;
+  --gris-claro: #f2f4f7;
+  --dorado: #c9a227;
+  --shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.perfil-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.titulo {
+  text-align: center;
+  color: var(--azul);
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+.avatar-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo label {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.campo input {
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: var(--gris-claro);
+}
+
+.campo input:focus {
+  outline: 2px solid var(--azul);
+}
+
+.pass-wrapper {
+  position: relative;
+}
+
+.pass-wrapper .icono {
+  position: absolute;
+  right: 12px;
+  top: 38px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.btn-guardar {
+  background: var(--azul);
+  color: white;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-guardar:hover {
+  background: var(--azul-oscuro);
+  transform: translateY(-2px);
+}
+
+.perfil-btn {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  background: #004E92;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.perfil-btn:hover {
+  background: #C9A227;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.pass-wrapper {
+  position: relative;
+}
+
+.pass-wrapper .icono {
+  position: absolute;
+  right: 12px;
+  top: 38px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--azul);
+  transition: 0.2s;
+}
+
+.pass-wrapper .icono:hover {
+  color: var(--dorado);
+}

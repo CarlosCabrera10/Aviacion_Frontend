@@ -1,0 +1,293 @@
+/* ================================
+      CONTENEDOR PRINCIPAL
+================================ */
+.contenedor {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+  color: #003060;
+  font-family: "Poppins", sans-serif;
+}
+
+.titulo {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #003060;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+/* ================================
+      CARD DEL ALUMNO
+================================ */
+.alumno-card {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  padding: 15px 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  margin-bottom: 30px;
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid #003060;
+  margin-right: 20px;
+}
+
+.alumno-card .info p {
+  margin: 2px 0;
+}
+
+/* ================================
+             KPIs
+================================ */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.kpi-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.kpi-card h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.kpi-card p {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Colores especiales */
+.kpi-card.completados {
+  border-left: 6px solid #32cd32;
+}
+
+.kpi-card.programados {
+  border-left: 6px solid #ffb400;
+}
+
+.kpi-card.cancelados {
+  border-left: 6px solid #ff4b4b;
+}
+
+/* ================================
+            GRÁFICAS
+================================ */
+.graficas-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.grafica {
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.subtitulo {
+  font-size: 20px;
+  font-weight: 600;
+  color: #003060;
+  margin-bottom: 15px;
+}
+
+.subtitulo-margen {
+  margin-top: 30px;
+}
+
+/* ================================
+             FILTROS
+================================ */
+.filtros {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filtros input,
+.filtros select {
+  padding: 8px 12px;
+  border: 2px solid #003060;
+  border-radius: 6px;
+  outline: none;
+  font-size: 15px;
+}
+
+.btn-limpiar {
+  background: #003060;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-limpiar:hover {
+  background: #01233f;
+}
+
+/* ================================
+           TABLA HISTORIAL
+================================ */
+.tabla-contenedor {
+  overflow-x: auto;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.tabla th {
+  background: #003060;
+  color: white;
+  padding: 12px;
+  text-align: center;
+}
+
+.tabla td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Badges */
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: white;
+  font-weight: 600;
+}
+
+.completado-b {
+  background: #32cd32;
+}
+
+.programado-b {
+  background: #ffb400;
+}
+
+.cancelado-b {
+  background: #ff4b4b;
+}
+
+/* Botón detalle */
+.btn-detalle {
+  background: #c9a227;
+  padding: 7px 15px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-detalle:hover {
+  background: #b18d1e;
+}
+
+/* ================================
+              PAGINACIÓN
+================================ */
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
+  gap: 12px;
+}
+
+.page-btn {
+  background: #003060;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.page-btn:disabled {
+  background: #8aa4be;
+  cursor: not-allowed;
+}
+
+.page-numbers span {
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.page-numbers span:hover {
+  background: #e0e0e0;
+}
+
+.page-numbers span.active {
+  background: #003060;
+  color: white;
+  font-weight: bold;
+}
+
+.size-selector {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #003060;
+}
+
+/* ================================
+          MENSAJE SIN DATOS
+================================ */
+.no-data {
+  text-align: center;
+  margin: 20px 0;
+  color: gray;
+}
+
+/* ================================
+          RESPONSIVE
+================================ */
+@media (max-width: 992px) {
+  .graficas-2x2 {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filtros {
+    flex-direction: column;
+  }
+}

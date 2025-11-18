@@ -1,0 +1,84 @@
+<div class="contenedor">
+
+  <h2 class="titulo">Historial de Vuelos</h2>
+
+  <!-- FILTROS -->
+  <div class="filtros">
+
+    <input type="text" placeholder="Buscar alumno..." [(ngModel)]="filtroAlumno">
+
+    <input type="date" [(ngModel)]="filtroFecha">
+
+    <select [(ngModel)]="filtroEstado">
+      <option value="">Todos los estados</option>
+      <option value="Programado">Programado</option>
+      <option value="Completado">Completado</option>
+      <option value="Cancelado">Cancelado</option>
+    </select>
+
+    <button class="btn-dorado" (click)="buscar()">Buscar</button>
+    <button class="btn-azul" (click)="limpiarFiltros()">Limpiar</button>
+  </div>
+
+  <!-- TABLA -->
+  <div class="tabla-wrapper">
+
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th>Alumno</th>
+          <th>Avioneta</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Estado</th>
+          <th style="width: 160px;">Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let v of vuelos">
+
+          <td>{{ v.nombreAlumno }}</td>
+          <td>{{ v.codigoAvioneta }}</td>
+          <td>{{ v.fecha }}</td>
+          <td>{{ v.horaInicio }} - {{ v.horaFin }}</td>
+
+          <td>
+            <span class="badge"
+                  [class.completado]="v.estado==='Completado'"
+                  [class.cancelado]="v.estado==='Cancelado'"
+                  [class.programado]="v.estado==='Programado'">
+              {{ v.estado }}
+            </span>
+          </td>
+
+          <td class="acciones-col">
+            <button class="btn-accion" [routerLink]="['/tutor/vuelos/editar', v.idVuelo]">
+              Editar
+            </button>
+
+            <button class="btn-detalle" [routerLink]="['/tutor/vuelos/detalle', v.idVuelo]">
+              Detalle
+            </button>
+          </td>
+
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+
+  <!-- PAGINACION -->
+  <div class="paginacion">
+
+    <button (click)="cambiarPagina(paginaActual - 1)">⬅ Anterior</button>
+
+    <span>Página {{ paginaActual + 1 }} de {{ (totalVuelos / size) | number:'1.0-0' }}</span>
+
+    <button (click)="cambiarPagina(paginaActual + 1)">Siguiente ➡</button>
+
+  </div>
+
+</div>

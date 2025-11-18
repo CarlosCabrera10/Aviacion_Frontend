@@ -1,0 +1,119 @@
+<div class="container">
+
+  <h2 class="titulo">Editar Vuelo</h2>
+
+  <div *ngIf="vuelo" class="card">
+
+    <!-- Datos del vuelo -->
+    <h3 class="seccion">Datos del vuelo</h3>
+
+    <div class="grid">
+
+      <div>
+        <label>Alumno</label>
+        <input class="input" [value]="vuelo.nombreAlumno" disabled>
+      </div>
+
+      <div>
+        <label>Avioneta</label>
+        <input class="input" [value]="vuelo.codigoAvioneta" disabled>
+      </div>
+
+      <div>
+        <label>Fecha</label>
+        <input class="input" type="date" [value]="vuelo.fecha" disabled>
+      </div>
+
+      <div>
+        <label>Hora inicio</label>
+        <input class="input" type="time" [value]="vuelo.horaInicio" disabled>
+      </div>
+
+      <div>
+        <label>Hora fin</label>
+        <input class="input" type="time" [value]="vuelo.horaFin" disabled>
+      </div>
+
+      <div>
+        <label>Estado</label>
+
+        <!-- 🔥 Select solo se bloquea si el vuelo YA estaba completado -->
+        <select class="input" [(ngModel)]="vuelo.estado" (change)="onEstadoChange()">
+          <option value="Programado">Programado</option>
+          <option value="Completado">Completado</option>
+          <option value="Cancelado">Cancelado</option>
+        </select>
+
+      </div>
+
+      <div class="full">
+        <label>Observación</label>
+        <textarea class="input" rows="3" [(ngModel)]="vuelo.observacion"></textarea>
+      </div>
+
+    </div>
+
+    <button class="btn-guardar" (click)="guardarVuelo()">
+      Guardar cambios
+    </button>
+
+  </div>
+
+  <!-- ========= RENDIMIENTO (solo si está completado) ============ -->
+  <div *ngIf="mostrarRendimiento && rendimiento" class="card rendimiento-card">
+
+    <h3 class="seccion">Rendimiento del Alumno</h3>
+
+    <div class="grid">
+
+      <div>
+        <label>Técnica de aterrizaje</label>
+        <input type="number" class="input" min="1" max="10" step="1"
+          onkeypress="return event.charCode >= 48 && event.charCode <= 57" [(ngModel)]="rendimiento.tecnicaAterrizaje">
+      </div>
+
+      <div>
+        <label>Maniobras</label>
+        <input type="number" class="input" min="1" max="10" step="1"
+          onkeypress="return event.charCode >= 48 && event.charCode <= 57" [(ngModel)]="rendimiento.maniobras">
+      </div>
+
+      <div>
+        <label>Comunicación por radio</label>
+        <input type="number" class="input" min="1" max="10" step="1"
+          onkeypress="return event.charCode >= 48 && event.charCode <= 57" [(ngModel)]="rendimiento.comunicacionRadio">
+      </div>
+
+      <div>
+        <label>Seguimiento de instrucciones</label>
+        <input type="number" class="input" min="1" max="10" step="1"
+          onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+          [(ngModel)]="rendimiento.seguimientoInstrucciones">
+      </div>
+
+      <div>
+        <label>Puntualidad</label>
+        <input type="number" class="input" min="1" max="10" step="1"
+          onkeypress="return event.charCode >= 48 && event.charCode <= 57" [(ngModel)]="rendimiento.puntualidad">
+      </div>
+
+      <div>
+        <label>Comportamiento</label>
+        <input type="number" class="input" min="1" max="10" step="1"
+          onkeypress="return event.charCode >= 48 && event.charCode <= 57" [(ngModel)]="rendimiento.comportamiento">
+      </div>
+
+      <div class="full">
+        <label>Comentarios</label>
+        <textarea class="input" rows="3" [(ngModel)]="rendimiento.comentarios"></textarea>
+      </div>
+
+    </div>
+
+    <button class="btn-dorado" (click)="guardarRendimiento()">
+      Guardar Rendimiento
+    </button>
+
+  </div>
+
+</div>

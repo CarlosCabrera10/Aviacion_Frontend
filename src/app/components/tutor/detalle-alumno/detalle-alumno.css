@@ -1,0 +1,466 @@
+:root {
+  --azul: #003060;
+  --azul-oscuro: #001a36;
+  --dorado: #c9a227;
+  --gris: #f2f4f7;
+}
+
+.contenedor {
+  width: 95%;
+  margin: auto;
+  padding-bottom: 2rem;
+}
+
+.titulo {
+  text-align: center;
+  color: var(--azul);
+  font-size: 2.3rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+}
+
+/* ====================
+   CARD DEL ALUMNO
+==================== */
+.alumno-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  margin-bottom: 2rem;
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+
+.info h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--azul);
+}
+
+/* ====================
+   FILTROS
+==================== */
+.filtros {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filtros input,
+.filtros select {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.btn-limpiar {
+  background: var(--dorado);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ====================
+   KPIs
+==================== */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.kpi-card {
+  background: white;
+  padding: 1rem;
+  border-radius: 14px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+  text-align: center;
+}
+
+.kpi-card h4 {
+  color: var(--azul);
+  margin: 0;
+}
+
+.kpi-card p {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0.5rem 0 0;
+}
+
+.kpi-card.completados p { color: #32cd32; }
+.kpi-card.programados p { color: #ffb400; }
+.kpi-card.cancelados p { color: #ff4747; }
+
+/* ====================
+   GRÁFICAS
+==================== */
+.graficas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.grafica {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.subtitulo {
+  font-size: 1.4rem;
+  color: var(--azul);
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* ====================
+   TABLA
+==================== */
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.tabla th {
+  background: var(--azul);
+  color: white;
+  padding: 0.8rem;
+}
+
+.tabla td {
+  padding: 0.8rem;
+  border-bottom: 1px solid #eee;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.badge.completado {
+  background: #32cd32;
+  color: white;
+}
+.badge.programado {
+  background: #ffb400;
+  color: black;
+}
+.badge.cancelado {
+  background: #ff4747;
+  color: white;
+}
+
+.no-data {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+}
+
+/* PAGINACIÓN */
+.paginacion {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.paginacion button {
+  background: var(--azul);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  margin: 0 5px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.paginacion button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+  gap: 12px;
+}
+
+.page-btn {
+  background: var(--azul);
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.page-numbers {
+  display: flex;
+  gap: 8px;
+}
+
+.page-numbers span {
+  background: #e9eef7;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--azul);
+  font-weight: bold;
+  transition: 0.15s;
+}
+
+.page-numbers span:hover {
+  background: var(--azul);
+  color: #fff;
+}
+
+.page-numbers span.active {
+  background: var(--dorado);
+  color: white;
+  transform: scale(1.05);
+}
+
+.size-selector {
+  padding: 7px 10px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+}
+/* Las nuevas gráficas usan el mismo estilo */
+.grafica {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+/* NUEVO GRID 2×2 PARA LAS 4 GRÁFICAS */
+.graficas-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+/* ==========================
+   CONTENEDOR PRINCIPAL
+========================== */
+.contenedor {
+  padding: 1rem;
+  max-width: 1400px;
+  margin: auto;
+}
+
+/* ==========================
+   TARJETA DEL ALUMNO
+========================== */
+.alumno-card {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px #00306022;
+}
+
+.alumno-card img.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+/* ==========================
+   KPIs GRID
+========================== */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.kpi-card {
+  background: #fff;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px #00306022;
+}
+
+.kpi-card h4 {
+  margin-bottom: 0.5rem;
+}
+
+/* ==========================
+   GRÁFICAS 2 × 2
+========================== */
+.graficas-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.grafica {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px #00306022;
+}
+
+/* ==========================
+   FILTROS
+========================== */
+.filtros {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.filtros input,
+.filtros select {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.btn-limpiar {
+  background: #003060;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.btn-limpiar:hover {
+  background: #00264d;
+}
+
+/* ==========================
+   TABLA
+========================== */
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #00306022;
+}
+
+.tabla th,
+.tabla td {
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.tabla thead {
+  background: #003060;
+  color: white;
+}
+
+/* Scroll horizontal en móvil */
+@media (max-width: 600px) {
+  .tabla {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+/* ==========================
+   PAGINACIÓN
+========================== */
+.pagination-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.page-btn {
+  padding: 0.4rem 0.8rem;
+  background: #003060;
+  color: white;
+  border-radius: 6px;
+}
+
+.page-numbers span {
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.page-numbers span.active {
+  background: #003060;
+  color: #fff;
+}
+
+/* ==========================
+   RESPONSIVE BREAKPOINTS
+========================== */
+
+/* 📌 Tablet (2 columnas en KPIs y gráficas) */
+@media (max-width: 1024px) {
+
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .graficas-2x2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 📌 Móvil (todo en 1 columna) */
+@media (max-width: 600px) {
+
+  .alumno-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .graficas-2x2 {
+    grid-template-columns: 1fr;
+  }
+
+  .grafica {
+    margin-bottom: 1rem;
+  }
+
+  .filtros {
+    flex-direction: column;
+  }
+
+  .pagination-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

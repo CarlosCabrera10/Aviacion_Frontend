@@ -55,20 +55,25 @@ export class SidebarComponent implements OnInit {
     }
 
     if (this.rol === 'Tutor') {
-      this.menuItems = [
-        { titulo: 'Dashboard', icono: '🏠', ruta: '/tutor/dashboard' },
-        { titulo: 'Mi Horario', icono: '📅', ruta: '/tutor/horario' },
-        { titulo: 'Actualizar Vuelos', icono: '🛫', ruta: '/tutor/vuelos' },
-        { titulo: 'Observaciones', icono: '📝', ruta: '/tutor/observaciones' }
-      ];
-    }
+  this.menuItems = [
+    { titulo: 'Dashboard', icono: '🏠', ruta: '/tutor/dashboard' },
+    { titulo: 'Mi Horario', icono: '📅', ruta: '/tutor/horario' },
+    { titulo: 'Actualizar Vuelos', icono: '🛫', ruta: '/tutor/vuelos' },
+    { titulo: 'Historial de Vuelos', icono: '📘', ruta: '/tutor/vuelos-historial' },
+    { titulo: 'Mis Alumnos', icono: '👨‍🎓', ruta: '/tutor/alumnos' }
+  ];
+}
+    
 
     if (this.rol === 'Alumno') {
       this.menuItems = [
         { titulo: 'Dashboard', icono: '🏠', ruta: '/alumno/dashboard' },
-        { titulo: 'Mis Vuelos', icono: '📅', ruta: '/alumno/mis-vuelos' },
-        { titulo: 'Historial', icono: '📘', ruta: '/alumno/historial' },
-        { titulo: 'Notificaciones', icono: '🔔', ruta: '/alumno/notificaciones' }
+        { titulo: 'Notificaciones', icono: '🔔', ruta: '/alumno/notificaciones' },
+        { titulo: 'Rendimiento', icono: '📊', ruta: '/alumno/rendimiento' },
+        { titulo: 'Mi Horario', icono: '📅', ruta: '/alumno/horario' },
+        { titulo: 'Mis Vuelos', icono: '🛫', ruta: '/alumno/mis-vuelos' }
+        
+
       ];
     }
   }
