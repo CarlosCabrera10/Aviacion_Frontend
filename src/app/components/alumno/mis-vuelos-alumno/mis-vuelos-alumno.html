@@ -36,6 +36,7 @@
 
     <thead>
       <tr>
+        <th>ID Vuelo</th>
         <th>Fecha</th>
         <th>Horario</th>
         <th>Avioneta</th>
@@ -47,7 +48,7 @@
 
     <tbody>
       <tr *ngFor="let v of vuelosPagina">
-
+        <td> {{v.idVuelo}}</td>
         <td>{{ v.fecha }}</td>
         <td>{{ v.horaInicio }} - {{ v.horaFin }}</td>
         <td>{{ v.codigoAvioneta }}</td>

@@ -43,6 +43,7 @@ import { DetalleVueloAlumnoComponent } from './components/alumno/vuelo-detalle/v
 import { HorarioAlumnoComponent } from './components/alumno/horario-alumno/horario-alumno';
 import { DashboardAlumnoComponent } from './components/alumno/dashboard-alumno/dashboard-alumno';
 import{ MisVuelosAlumnoComponent  } from './components/alumno/mis-vuelos-alumno/mis-vuelos-alumno';
+import { NotificacionesAlumnoComponent } from './components/alumno/notificaciones-alumno/notificaciones-alumno';
 //import { MisVuelosComponent } from './components/alumno/mis-vuelos.component';
 
 export const routes: Routes = [
@@ -126,6 +127,8 @@ export const routes: Routes = [
   {path: 'vuelo/detalle/:id', component: DetalleVueloAlumnoComponent },
   {path: 'horario', component: HorarioAlumnoComponent },
   {path: 'mis-vuelos', component: MisVuelosAlumnoComponent },
+  {path: 'notificaciones', component: NotificacionesAlumnoComponent },
+
    
 
 
