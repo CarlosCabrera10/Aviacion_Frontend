@@ -59,31 +59,36 @@ stats = {
 };
 
   
-  cargarVuelos() {
-    const idTutor = Number(localStorage.getItem('id_usuario'));
+cargarVuelos() {
+  const idTutor = Number(localStorage.getItem('id_usuario'));
 
-    this.vuelosService.listarPorTutor(idTutor).subscribe((vuelos) => {
+  this.vuelosService.listarPorTutor(idTutor).subscribe((vuelos) => {
 
-
-       // 🔹 Contadores
+    // CONTADORES
     this.stats.programados = vuelos.filter(v => v.estado === 'Programado').length;
     this.stats.completados = vuelos.filter(v => v.estado === 'Completado').length;
     this.stats.cancelados = vuelos.filter(v => v.estado === 'Cancelado').length;
     this.stats.total = vuelos.length;
-    
-      this.calendarOptions.events = vuelos.map((v) => ({
-        id: String(v.idVuelo), // ← convertido a string
-        title: `${v.nombreAlumno} (${v.codigoAvioneta})`,
 
-        start: `${v.fecha}T${v.hora}`,
-        color:
-          v.estado === 'Completado' ? '#198754' : v.estado === 'Cancelado' ? '#dc3545' : '#0d6efd',
-      }));
-    });
-  }
+    // MAPEAMOS EVENTOS FULLCALENDAR
+    this.calendarOptions.events = vuelos.map(v => ({
+      id: String(v.idVuelo),
+      title: `${v.nombreAlumno} (${v.codigoAvioneta})`,
+      start: `${v.fecha}T${v.horaInicio}`,   // ← FIX
+      end: v.horaFin ? `${v.fecha}T${v.horaFin}` : undefined, // opcional
+      color:
+        v.estado === 'Completado'
+          ? '#198754'
+          : v.estado === 'Cancelado'
+          ? '#dc3545'
+          : '#0d6efd',
+    }));
+  });
+}
 
-  onEventClick(info: EventClickArg) {
-    const idVuelo = info.event.id;
-    this.router.navigate(['/tutor/vuelos', idVuelo]);
-  }
+onEventClick(info: EventClickArg) {
+  const idVuelo = info.event.id;
+  this.router.navigate(['/tutor/vuelos/editar', idVuelo]);
+}
+
 }

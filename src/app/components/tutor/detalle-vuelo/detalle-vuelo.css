@@ -1,0 +1,77 @@
+:root {
+  --azul: #003060;
+  --dorado: #c9a227;
+}
+
+.contenedor {
+  width: 90%;
+  margin: auto;
+}
+
+.titulo {
+  text-align: center;
+  margin: 1rem 0;
+  color: var(--azul);
+}
+
+.btn-volver {
+  text-decoration: none;
+  color: var(--azul);
+  font-weight: bold;
+}
+
+.card {
+  background: #fff;
+  padding: 1.2rem;
+  margin: 1rem 0;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.no-data {
+  text-align: center;
+  color: #777;
+}
+
+.error {
+  color: #b00020;
+  text-align: center;
+}
+/* GRID DOS COLUMNAS */
+.grid-panel {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* PUNTAJE GENERAL */
+.puntaje {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: var(--dorado);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* TABLA DE RENDIMIENTO */
+.tabla-rendimiento {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-rendimiento th {
+  background: var(--azul);
+  color: #fff;
+  text-align: left;
+  padding: 8px;
+}
+
+.tabla-rendimiento td {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.tabla-rendimiento tr:nth-child(even) {
+  background: #f7f9fc;
+}

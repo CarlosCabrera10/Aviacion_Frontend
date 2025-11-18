@@ -1,0 +1,101 @@
+:root {
+  --azul: #003060;
+  --azul-oscuro: #001a36;
+  --gris: #f2f4f7;
+  --dorado: #c9a227;
+}
+
+.titulo {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--azul);
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+}
+
+.filtros {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+}
+
+.filtros input {
+  width: 60%;
+  padding: 0.7rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: var(--gris);
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 10px;
+}
+
+.card-alumno {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  background: white;
+  padding: 1rem;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+
+  transition: transform .2s ease;
+}
+
+.card-alumno:hover {
+  transform: translateY(-3px);
+}
+
+.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 3px solid var(--azul);
+}
+
+.info {
+  flex: 1;
+}
+
+.btn-detalle {
+  background: var(--dorado);
+  color: black;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .2s;
+  font-weight: 600;
+}
+
+.btn-detalle:hover {
+  background: var(--azul);
+  color: white;
+}
+
+.paginacion {
+  margin-top: 1.5rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.paginacion button {
+  background: var(--azul);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.paginacion button:hover {
+  background: var(--dorado);
+  color: black;
+}
