@@ -47,4 +47,30 @@ export class ReportesEstadisticasService {
       headers: this.getHeaders()
     });
   }
+
+  // NUEVOS endpoints añadidos según backend
+  vuelosPorTutor(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/vuelos-por-tutor`, {
+      headers: this.getHeaders()
+    });
+  }
+
+  horasVueloAvionetas(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/horas-vuelo-avionetas`, {
+      headers: this.getHeaders()
+    });
+  }
+
+  heatmapHorarios(fechaInicio?: string, fechaFin?: string): Observable<any> {
+    let params: any = {};
+
+    if (fechaInicio) params.fechaInicio = fechaInicio;
+    if (fechaFin) params.fechaFin = fechaFin;
+
+    return this.http.get(`${this.apiUrl}/heatmap-horarios`, {
+      headers: this.getHeaders(),
+      params
+    });
+  }
+
 }

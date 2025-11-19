@@ -115,7 +115,6 @@ import { EspacioVuelo } from '../../models/espacioVuelo.model';
       <label>Estado:</label>
       <select name="estado" [(ngModel)]="vuelo.estado">
         <option value="Programado">Programado</option>
-        <option value="Completado">Completado</option>
         <option value="Cancelado">Cancelado</option>
       </select>
     </div>
@@ -173,7 +172,8 @@ export class VuelosFormComponent implements OnInit {
     idEspacioVuelo: 0,
     fecha: '',
     estado: 'Programado',
-    hora: 0
+    hora: 0,
+    horaBloque: ''
   };
 
   minDate = "";
@@ -249,14 +249,30 @@ export class VuelosFormComponent implements OnInit {
     this.vuelosService.obtenerPorId(id).subscribe({
       next: v => {
         this.vuelo = v;
-        this.vuelo.fecha = v.fecha.split('T')[0];
-        if (!this.vuelo.horaBloque) this.vuelo.horaBloque = this.bloques[0].texto;
-        this.asignarHoras();
 
+        // Convertir fecha a yyyy-MM-dd
+        this.vuelo.fecha = v.fecha.split('T')[0];
+
+        // Normalizar horaInicio y horaFin al formato hh:mm
+        if (v.horaInicio) this.vuelo.horaInicio = v.horaInicio.slice(0,5);
+        if (v.horaFin) this.vuelo.horaFin = v.horaFin.slice(0,5);
+
+        // Buscar bloque que coincida con los horarios
+        const bloqueEncontrado = this.bloques.find(b =>
+          b.inicio === this.vuelo.horaInicio && b.fin === this.vuelo.horaFin
+        );
+
+        this.vuelo.horaBloque = bloqueEncontrado?.texto || this.bloques[0].texto;
+
+        this.asignarHoras(); // asegura que horaInicio y horaFin se asignen según el bloque
+
+        // Filtrar dropdowns
         const alumno = this.alumnos.find(a => a.id === this.vuelo.idAlumno);
         if (alumno) this.filtroAlumno = `${alumno.nombre} ${alumno.apellido}`;
+
         const tutor = this.tutores.find(t => t.id === this.vuelo.idTutor);
         if (tutor) this.filtroTutor = `${tutor.nombre} ${tutor.apellido}`;
+
         const av = this.avionetas.find(x => x.idAvioneta === this.vuelo.idAvioneta);
         if (av) this.filtroAvioneta = `${av.codigo} - ${av.modelo}`;
       },
@@ -265,10 +281,14 @@ export class VuelosFormComponent implements OnInit {
   }
 
   asignarHoras() {
-    const b = this.bloques.find(x => x.texto === this.vuelo.horaBloque);
-    if (b) {
-      this.vuelo.horaInicio = b.inicio;
-      this.vuelo.horaFin = b.fin;
+    const bloque = this.bloques.find(b => b.texto === this.vuelo.horaBloque);
+    if (bloque) {
+      this.vuelo.horaInicio = bloque.inicio;
+      this.vuelo.horaFin = bloque.fin;
+    } else {
+      this.vuelo.horaBloque = this.bloques[0].texto;
+      this.vuelo.horaInicio = this.bloques[0].inicio;
+      this.vuelo.horaFin = this.bloques[0].fin;
     }
   }
 
@@ -284,13 +304,6 @@ export class VuelosFormComponent implements OnInit {
     );
   }
 
-  filtrarAvionetas() {
-  this.avionetasFiltradas = this.avionetas.filter(av =>
-    `${av.codigo} ${av.modelo}`.toLowerCase().includes(this.filtroAvioneta.toLowerCase())
-    );
-  }
-
-
   seleccionarTutor(t: Usuario) {
     this.vuelo.idTutor = t.id!;
     this.filtroTutor = `${t.nombre} ${t.apellido}`;
@@ -300,6 +313,12 @@ export class VuelosFormComponent implements OnInit {
   filtrarTutores() {
     this.tutoresFiltrados = this.tutores.filter(t =>
       `${t.nombre} ${t.apellido}`.toLowerCase().includes(this.filtroTutor.toLowerCase())
+    );
+  }
+
+  filtrarAvionetas() {
+    this.avionetasFiltradas = this.avionetas.filter(av =>
+      `${av.codigo} ${av.modelo}`.toLowerCase().includes(this.filtroAvioneta.toLowerCase())
     );
   }
 

@@ -13,91 +13,232 @@ import { Avioneta } from '../../models/avioneta.model';
   imports: [CommonModule, FormsModule],
   encapsulation: ViewEncapsulation.None,
   template: `
-<div class="container">
-  <h2>{{ editMode ? 'Editar Mantenimiento' : 'Nuevo Mantenimiento' }}</h2>
+<div class="card">
+  <h2 class="title">{{ editMode ? 'Editar Mantenimiento' : 'Nuevo Mantenimiento' }}</h2>
 
   <form #form="ngForm" (ngSubmit)="guardar(form)" novalidate>
 
-    <label>Avioneta:</label>
-    <input type="text" placeholder="Buscar..." [(ngModel)]="filtroAvioneta" name="filtroAvioneta"
-           (focus)="showDropdown=true" (blur)="cerrarDropdown()" autocomplete="off" />
-    
-    <ul *ngIf="showDropdown && avionetasFiltradas().length" class="dropdown">
-      <li *ngFor="let a of avionetasFiltradas()" (mousedown)="seleccionarAvioneta(a)">
-        {{ a.codigo }}
-      </li>
-    </ul>
+    <!-- AVIONETA -->
+    <div class="form-group">
+      <label>Avioneta</label>
 
-    <label>Descripción:</label>
-    <textarea name="descripcion" [(ngModel)]="mantenimiento.descripcion" required></textarea>
+      <div class="input-wrapper">
+        <input 
+          type="text"
+          placeholder="Buscar avioneta..."
+          [(ngModel)]="filtroAvioneta"
+          name="filtroAvioneta"
+          (focus)="showDropdown=true"
+          (blur)="cerrarDropdown()"
+          autocomplete="off"
+        />
 
-    <label>Tipo:</label>
-    <input type="text" name="tipo" [(ngModel)]="mantenimiento.tipo" required />
+        <ul *ngIf="showDropdown && avionetasFiltradas().length" class="dropdown">
+          <li *ngFor="let a of avionetasFiltradas()" (mousedown)="seleccionarAvioneta(a)">
+            ✈️ {{ a.codigo }}
+          </li>
+        </ul>
+      </div>
+    </div>
 
-    <div *ngIf="editMode">
-      <label>Estado:</label>
+    <!-- DESCRIPCIÓN -->
+    <div class="form-group">
+      <label>Descripción</label>
+      <textarea name="descripcion" [(ngModel)]="mantenimiento.descripcion" required></textarea>
+    </div>
+
+    <!-- TIPO -->
+    <div class="form-group">
+      <label>Tipo</label>
+      <input type="text" name="tipo" [(ngModel)]="mantenimiento.tipo" required />
+    </div>
+
+    <!-- ESTADO -->
+    <div *ngIf="editMode" class="form-group">
+      <label>Estado</label>
       <select name="estado" [(ngModel)]="mantenimiento.estado" required>
         <option *ngFor="let e of estados" [value]="e">{{ e }}</option>
       </select>
     </div>
 
-    <label>Notas:</label>
-    <textarea name="notas" [(ngModel)]="mantenimiento.notas"></textarea>
+    <!-- NOTAS -->
+    <div class="form-group">
+      <label>Notas</label>
+      <textarea name="notas" [(ngModel)]="mantenimiento.notas"></textarea>
+    </div>
 
-    <label>Fecha Inicio:</label>
-    <input type="datetime-local" name="fechaInicio" [(ngModel)]="mantenimiento.fechaInicio" readonly />
+    <!-- FECHAS -->
+    <div class="form-row">
+      <div class="form-group">
+        <label>Fecha Inicio</label>
+        <input type="datetime-local" name="fechaInicio" [(ngModel)]="mantenimiento.fechaInicio" readonly />
+      </div>
 
-    <label>Fecha Fin:</label>
-    <input type="datetime-local" name="fechaFin" [(ngModel)]="mantenimiento.fechaFin" readonly />
+      <div class="form-group">
+        <label>Fecha Fin</label>
+        <input type="datetime-local" name="fechaFin" [(ngModel)]="mantenimiento.fechaFin" readonly />
+      </div>
+    </div>
 
-    <div *ngIf="mensajeError" class="error">{{ mensajeError }}</div>
-    <div *ngIf="mensajeExito" class="success">{{ mensajeExito }}</div>
+    <!-- MENSAJES -->
+    <div *ngIf="mensajeError" class="alert error">{{ mensajeError }}</div>
+    <div *ngIf="mensajeExito" class="alert success">{{ mensajeExito }}</div>
 
-    <div class="buttons">
-      <button type="submit" [disabled]="form.invalid">{{ editMode ? 'Actualizar' : 'Guardar' }}</button>
-      <button type="button" (click)="cancelar()">Cancelar</button>
+    <!-- BOTONES -->
+    <div class="button-row">
+      <button type="submit" class="btn primary" [disabled]="form.invalid">
+        {{ editMode ? 'Actualizar' : 'Guardar' }}
+      </button>
+
+      <button type="button" class="btn secondary" (click)="cancelar()">
+        Cancelar
+      </button>
     </div>
 
   </form>
 </div>
   `,
   styles: [`
-.container {
-  max-width: 600px; margin: 2rem auto; padding: 2rem;
-  background: #fff; border-radius: 12px; font-family: Arial, sans-serif;
+.card {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+.title {
+  text-align: center;
+  color: #004e92;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #2c3e50;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #d0d7de;
+  background: #fdfdfd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #004e92;
+  box-shadow: 0 0 4px rgba(0, 78, 146, 0.3);
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.input-wrapper {
   position: relative;
 }
-h2 { text-align: center; margin-bottom: 1rem; color: #004e92; }
-label { display: block; margin-top: 1rem; font-weight: bold; }
-input, select, textarea { width: 100%; padding: 0.5rem; margin-top: 0.3rem; border: 1px solid #ccc; border-radius: 6px; }
-textarea { resize: vertical; }
-.buttons { margin-top: 1.5rem; display: flex; justify-content: space-between; }
-button { padding: 0.5rem 1rem; border: none; border-radius: 6px; background-color: #004e92; color: #fff; cursor: pointer; }
-button:hover { background-color: #003366; }
-button:disabled { cursor: not-allowed; opacity: 0.6; }
-.error { color: #d9534f; margin-bottom: 1rem; font-weight: bold; }
-.success { color: #28a745; margin-bottom: 1rem; font-weight: bold; }
 
 .dropdown {
   position: absolute;
-  background: #fff;
   width: 100%;
-  max-height: 150px;
-  overflow-y: auto;
+  background: white;
+  margin-top: 4px;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  border-radius: 6px;
-  margin-top: 0.2rem;
-  z-index: 1000;
-  list-style: none;
+  max-height: 180px;
+  overflow-y: auto;
   padding: 0;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+
 .dropdown li {
-  padding: 0.5rem;
+  list-style: none;
+  padding: 0.7rem;
   cursor: pointer;
+  transition: 0.2s;
 }
+
 .dropdown li:hover {
   background: #004e92;
-  color: #fff;
+  color: white;
+}
+
+.alert {
+  padding: 0.8rem;
+  border-radius: 8px;
+  margin-top: 0.8rem;
+  font-weight: 600;
+}
+
+.alert.error {
+  background: #f8d7da;
+  color: #a94442;
+}
+
+.alert.success {
+  background: #d4edda;
+  color: #2e7d32;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.4rem;
+}
+
+.btn {
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+  font-size: 1rem;
+}
+
+.btn.primary {
+  background: linear-gradient(90deg, #004e92, #0073c4);
+  color: white;
+  border: none;
+}
+
+.btn.primary:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.btn.secondary {
+  background: #e0e0e0;
+  color: #333;
+  border: none;
+}
+
+.btn.secondary:hover {
+  background: #cacaca;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
   `]
 })
@@ -168,7 +309,7 @@ export class MantenimientoFormComponent implements OnInit {
   }
 
   cerrarDropdown() {
-    setTimeout(() => this.showDropdown = false, 150); // permite click en la lista antes de cerrar
+    setTimeout(() => this.showDropdown = false, 150);
   }
 
   guardar(form: NgForm) {
