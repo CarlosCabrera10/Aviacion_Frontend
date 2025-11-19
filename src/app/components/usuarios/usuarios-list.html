@@ -1,0 +1,84 @@
+<div class="container">
+
+  <h2 class="titulo">Gestión de Usuarios</h2>
+
+  <!-- Barra superior -->
+  <div class="top-bar">
+
+    <!-- BUSCADOR -->
+    <input
+      type="text"
+      placeholder="Buscar por nombre o correo..."
+      [(ngModel)]="search"
+      (input)="aplicarFiltros()"
+      class="search-input"
+    />
+
+    <!-- FILTRO POR ROL -->
+    <select [(ngModel)]="filtroRol" (change)="aplicarFiltros()" class="filter-select">
+      <option value="">Todos los roles</option>
+      <option value="Administrador">Administrador</option>
+      <option value="Tutor">Tutor</option>
+      <option value="Alumno">Alumno</option>
+    </select>
+
+    <!-- BOTÓN NUEVO -->
+    <button class="btn-nuevo" (click)="irNueva()">+ Nuevo Usuario</button>
+  </div>
+
+  <!-- Tabla -->
+  <table class="tabla">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Rol</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let u of pagina">
+        <td>{{ u.nombre }} {{ u.apellido }}</td>
+        <td>{{ u.correo }}</td>
+        <td>{{ u.rol }}</td>
+        <td>
+          <span class="badge" [class.activo]="u.activo" [class.inactivo]="!u.activo">
+            {{ u.activo ? 'Activo' : 'Inactivo' }}
+          </span>
+        </td>
+
+        <td class="actions">
+          <button class="btn edit" (click)="editarUsuario(u.id)">Editar</button>
+          <button class="btn delete" (click)="eliminarUsuario(u.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- No data -->
+  <p class="no-data" *ngIf="pagina.length === 0">No hay usuarios que coincidan con los filtros.</p>
+
+  <!-- PAGINACIÓN -->
+  <div class="pagination" *ngIf="totalPaginas > 1">
+
+    <button (click)="cambiarPagina(-1)" [disabled]="paginaActual === 0">‹</button>
+
+    <span *ngFor="let p of [].constructor(totalPaginas); let i = index"
+          (click)="paginaActual = i; paginar()"
+          [class.active]="i === paginaActual">
+      {{ i + 1 }}
+    </span>
+
+    <button (click)="cambiarPagina(1)" [disabled]="paginaActual === totalPaginas - 1">›</button>
+
+    <select class="size" [(ngModel)]="size" (change)="paginar()">
+      <option [value]="10">10</option>
+      <option [value]="20">20</option>
+      <option [value]="50">50</option>
+    </select>
+
+  </div>
+
+</div>

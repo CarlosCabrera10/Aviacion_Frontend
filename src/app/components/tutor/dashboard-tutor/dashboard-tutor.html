@@ -1,50 +1,70 @@
-<div class="dashboard-container">
+<div class="welcome-section">
+  <div class="welcome-card">
+    <div class="welcome-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+        <path d="M2 12h20M12 2v20" />
+      </svg>
+    </div>
 
-  <h1 class="titulo">Panel del Instructor</h1>
-  <p class="subtitulo">Bienvenido a tu centro de control de vuelos.</p>
-
-  <!-- MINI CLIMA -->
-  <div class="clima-card" *ngIf="clima">
-    <h3>Clima Actual en el Aeródromo</h3>
-    <p class="condicion">{{ clima.weather[0].description | titlecase }}</p>
-
-    <div class="clima-grid">
-
-      <div>
-        <strong>Temperatura:</strong>
-        <span>{{ clima.main.temp }}°C</span>
-      </div>
-
-      <div>
-        <strong>Viento:</strong>
-        <span>{{ clima.wind.speed }} km/h</span>
-      </div>
-
-      <div>
-        <strong>Visibilidad:</strong>
-        <span>{{ clima.visibility / 1000 }} km</span>
-      </div>
-
-      <div>
-        <strong>Nubosidad:</strong>
-        <span>{{ clima.clouds.all }}%</span>
-      </div>
-
-      <div>
-        <strong>Humedad:</strong>
-        <span>{{ clima.main.humidity }}%</span>
-      </div>
-
+    <div class="welcome-content">
+      <h2>Panel del Instructor ✈️</h2>
+      <p>Administra tus vuelos, monitorea el clima y revisa tu agenda.</p>
     </div>
   </div>
-
-  <!-- TARJETAS DEL DASHBOARD -->
-  <div class="card-grid">
-    <div class="card" *ngFor="let item of dashboardItems" (click)="ir(item.ruta)">
-      <h3 class="card-title">{{ item.titulo }}</h3>
-      <p class="card-description">{{ item.descripcion }}</p>
-      <button class="btn-primary">Ir ahora</button>
-    </div>
-  </div>
-
 </div>
+
+<!-- CLIMA -->
+<div class="weather-card" *ngIf="clima">
+  <div class="weather-header">
+    <h3>Clima Actual en Aeródromo</h3>
+    <span class="condition">{{ clima.weather[0].description | titlecase }}</span>
+  </div>
+
+  <div class="weather-grid">
+    <div><strong>Temperatura:</strong> {{ clima.main.temp }}°C</div>
+    <div><strong>Viento:</strong> {{ clima.wind.speed }} km/h</div>
+    <div><strong>Visibilidad:</strong> {{ clima.visibility / 1000 }} km</div>
+    <div><strong>Nubosidad:</strong> {{ clima.clouds.all }}%</div>
+    <div><strong>Humedad:</strong> {{ clima.main.humidity }}%</div>
+  </div>
+</div>
+
+<!-- TARJETAS -->
+<div class="stats-grid">
+  <div class="stat-card" *ngFor="let item of dashboardItems" (click)="ir(item.ruta)">
+    
+    <div class="stat-icon">
+
+      <!-- Calendar -->
+      <svg *ngIf="item.icono === 'calendar'" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="18" rx="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+
+      <!-- Plane -->
+      <svg *ngIf="item.icono === 'plane'" viewBox="0 0 24 24">
+        <path d="M2.5 19l19-7-19-7L2 9l14 3-14 3z"/>
+      </svg>
+
+      <!-- Radar -->
+      <svg *ngIf="item.icono === 'radar'" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 12l6-2"/>
+        <path d="M12 12l-4 5"/>
+      </svg>
+
+    </div>
+
+    <div class="stat-content">
+      <h3 class="stat-title">{{ item.titulo }}</h3>
+      <p class="stat-description">{{ item.descripcion }}</p>
+      <span class="stat-link">Entrar →</span>
+    </div>
+  </div>
+</div>
+
+<footer class="dashboard-footer">
+  <p>© Escuela de Aviación – Panel del Instructor</p>
+</footer>

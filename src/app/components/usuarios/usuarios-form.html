@@ -1,0 +1,114 @@
+<div class="form-wrapper">
+
+  <div class="header">
+    <h2>
+      <i class="bi bi-person-vcard-fill icon"></i>
+      {{ editMode ? "Editar Usuario" : "Registrar Nuevo Usuario" }}
+    </h2>
+    <button class="back-btn" (click)="cancelar()">⟵ Regresar</button>
+  </div>
+
+  <form #form="ngForm" (ngSubmit)="guardar(form)" novalidate class="form-card">
+
+    <!-- Nombre -->
+    <div class="field">
+      <label>Nombre</label>
+      <input type="text" name="nombre" [(ngModel)]="usuario.nombre"
+             required minlength="2" maxlength="50" #nombre="ngModel" />
+      <div class="invalid" *ngIf="nombre.invalid && nombre.touched">
+        * El nombre es obligatorio (2-50 caracteres)
+      </div>
+    </div>
+
+    <!-- Apellido -->
+    <div class="field">
+      <label>Apellido</label>
+      <input type="text" name="apellido" [(ngModel)]="usuario.apellido"
+             required minlength="2" maxlength="50" #apellido="ngModel" />
+      <div class="invalid" *ngIf="apellido.invalid && apellido.touched">
+        * El apellido es obligatorio (2-50 caracteres)
+      </div>
+    </div>
+
+    <!-- Correo -->
+    <div class="field">
+      <label>Correo</label>
+      <input type="email" name="correo" [(ngModel)]="usuario.correo"
+             required email #correo="ngModel" />
+      <div class="invalid" *ngIf="correo.invalid && correo.touched">
+        * Ingrese un correo válido
+      </div>
+    </div>
+
+    <!-- Teléfono -->
+    <div class="field">
+      <label>Teléfono</label>
+      <input type="text" name="telefono" [(ngModel)]="usuario.telefono"
+             pattern="^[0-9]{4}-[0-9]{4}$" placeholder="0000-0000"
+             required #tel="ngModel" />
+      <div class="invalid" *ngIf="tel.invalid && tel.touched">
+        * Formato requerido: 0000-0000
+      </div>
+    </div>
+
+    <!-- Rol -->
+    <div class="field">
+      <label>Rol</label>
+      <select name="rol" [(ngModel)]="usuario.rol" required #rol="ngModel">
+        <option value="" disabled>Seleccione un rol</option>
+        <option value="Administrador">Administrador</option>
+        <option value="Tutor">Tutor</option>
+        <option value="Alumno">Alumno</option>
+      </select>
+      <div class="invalid" *ngIf="rol.invalid && rol.touched">
+        * Seleccione un rol
+      </div>
+    </div>
+
+    <!-- Estado -->
+    <div class="field">
+      <label>Estado</label>
+      <select name="activo" [(ngModel)]="usuario.activo" required>
+        <option [ngValue]="true">Activo</option>
+        <option *ngIf="usuario.rol !== 'Administrador'" [ngValue]="false">Inactivo</option>
+      </select>
+    </div>
+
+    <!-- Contraseña solo al crear -->
+    <div class="field" *ngIf="!editMode">
+      <label>Contraseña</label>
+
+      <div class="pass-wrapper">
+        <input [type]="mostrarPass ? 'text' : 'password'"
+               name="contrasena"
+               [(ngModel)]="usuario.contrasena"
+               required minlength="6"
+               #pass="ngModel" />
+        <span class="toggle" (click)="mostrarPass = !mostrarPass">
+          <i class="bi" [class.bi-eye-fill]="!mostrarPass"
+                       [class.bi-eye-slash-fill]="mostrarPass"></i>
+        </span>
+      </div>
+
+      <div class="invalid" *ngIf="pass.invalid && pass.touched">
+        * Mínimo 6 caracteres
+      </div>
+    </div>
+
+    <!-- Mensajes -->
+    <p class="msg error" *ngIf="mensajeError">{{ mensajeError }}</p>
+    <p class="msg success" *ngIf="mensajeExito">{{ mensajeExito }}</p>
+
+    <!-- Botones -->
+    <div class="actions">
+      <button type="submit" [disabled]="form.invalid" class="btn-save">
+        {{ editMode ? "Actualizar" : "Guardar" }}
+      </button>
+
+      <button type="button" class="btn-cancel" (click)="cancelar()">
+        Cancelar
+      </button>
+    </div>
+
+  </form>
+</div>
