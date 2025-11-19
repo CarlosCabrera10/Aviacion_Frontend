@@ -71,7 +71,8 @@ export class SidebarComponent implements OnInit {
         { titulo: 'Notificaciones', icono: '🔔', ruta: '/alumno/notificaciones' },
         { titulo: 'Rendimiento', icono: '📊', ruta: '/alumno/rendimiento' },
         { titulo: 'Mi Horario', icono: '📅', ruta: '/alumno/horario' },
-        { titulo: 'Mis Vuelos', icono: '🛫', ruta: '/alumno/mis-vuelos' }
+        { titulo: 'Mis Vuelos', icono: '🛫', ruta: '/alumno/mis-vuelos' },
+        
         
 
       ];

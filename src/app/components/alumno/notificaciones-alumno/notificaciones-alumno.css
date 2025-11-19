@@ -1,0 +1,202 @@
+/* -------------------------------------
+   GENERAL
+------------------------------------- */
+.contenedor {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+}
+
+.titulo {
+  text-align: center;
+  color: #003060;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.subtitulo {
+  text-align: center;
+  color: #6c757d;
+  margin-bottom: 2rem;
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #003060;
+}
+
+/* -------------------------------------
+   LISTA DE NOTIFICACIONES
+------------------------------------- */
+.lista-notificaciones {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Tarjeta */
+.noti-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  background: #ffffff;
+  border-left: 6px solid #C9A227;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: 0.2s ease;
+}
+
+.noti-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+/* Icono */
+.icono {
+  font-size: 2rem;
+  color: #003060;
+}
+
+.leida-icono {
+  opacity: 0.4;
+}
+
+/* Contenido */
+.contenido {
+  flex-grow: 1;
+}
+
+.mensaje {
+  font-size: 1rem;
+  color: #001F3F;
+  font-weight: 500;
+  margin: 0;
+}
+
+.fecha {
+  margin: 0.2rem 0 0;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+/* Botón “marcar leída” */
+.btn-leer {
+  background: #C9A227;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-leer:hover {
+  background: #b9931a;
+}
+
+/* Estado leída */
+.noti-card.leida {
+  opacity: 0.7;
+  border-left-color: #777;
+}
+
+.no-data {
+  text-align: center;
+  color: #555;
+  margin-top: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .noti-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-leer {
+    width: 100%;
+  }
+}
+/* ------------------------------
+   FILTROS
+------------------------------ */
+.filtros {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.filtros input,
+.filtros select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.btn-limpiar {
+  background: #C9A227;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+/* ------------------------------
+   PAGINACIÓN
+------------------------------ */
+.pagination-container {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.page-btn {
+  background: #003060;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.page-btn:disabled {
+  background: #777;
+}
+
+.page-numbers span {
+  padding: 6px 10px;
+  margin: 0 3px;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #eee;
+}
+
+.page-numbers span.active {
+  background: #003060;
+  color: white;
+  font-weight: 700;
+}
+
+.size-selector {
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .pagination-container {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+

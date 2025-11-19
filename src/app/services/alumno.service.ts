@@ -47,4 +47,13 @@ obtenerRendimiento(idVuelo: number) {
   return this.http.get(`http://localhost:8080/api/rendimientos/vuelo/${idVuelo}`);
 }
 
+obtenerNotificaciones(idAlumno: number) {
+  return this.http.get<any[]>(`${this.API_URL}/../notificaciones/${idAlumno}`);
+}
+
+marcarLeida(idNoti: number) {
+  return this.http.put(`${this.API_URL}/../notificaciones/leer/${idNoti}`, {});
+}
+
+
 }

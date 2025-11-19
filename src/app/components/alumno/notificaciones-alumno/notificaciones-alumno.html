@@ -1,0 +1,88 @@
+<div class="contenedor">
+
+  <h2 class="titulo">Mis Notificaciones</h2>
+
+  <p class="subtitulo">Filtra y revisa tus avisos importantes.</p>
+
+  <!-- ==========================
+        FILTROS
+  =========================== -->
+  <div class="filtros">
+
+    <!-- FECHAS -->
+    <input type="date" [(ngModel)]="fechaInicio" (change)="aplicarFiltros()">
+    <input type="date" [(ngModel)]="fechaFin" (change)="aplicarFiltros()">
+
+    <!-- ESTADO -->
+    <select [(ngModel)]="filtroEstado" (change)="aplicarFiltros()">
+      <option value="">Todos</option>
+      <option value="leida">Leídas</option>
+      <option value="no-leida">No leídas</option>
+    </select>
+
+    <button class="btn-limpiar" (click)="limpiarFiltros()">Limpiar</button>
+
+  </div>
+
+  <div *ngIf="cargando" class="loading">Cargando notificaciones...</div>
+
+  <!-- ==========================
+        LISTA DE NOTIFICACIONES
+  =========================== -->
+  <div class="lista-notificaciones" *ngIf="!cargando">
+
+    <div *ngFor="let n of pagina"
+         class="noti-card"
+         [class.leida]="n.leida">
+
+      <div class="icono" [class.leida-icono]="n.leida">🔔</div>
+
+      <div class="contenido">
+        <p class="mensaje">{{ n.mensaje }}</p>
+        <p class="fecha">{{ n.fecha | date: 'dd MMM yyyy – hh:mm a' }}</p>
+      </div>
+
+      <button *ngIf="!n.leida"
+              class="btn-leer"
+              (click)="marcarLeida(n.idNotificacion)">
+        Marcar como leída
+      </button>
+
+    </div>
+
+    <p class="no-data" *ngIf="pagina.length === 0">
+      No hay resultados con los filtros aplicados.
+    </p>
+
+  </div>
+
+  <!-- ==========================
+        PAGINACIÓN
+  =========================== -->
+  <div class="pagination-container" *ngIf="totalPaginas > 1">
+
+    <button class="page-btn" (click)="cambiarPagina(-1)" [disabled]="paginaActual === 0">
+      ‹
+    </button>
+
+    <div class="page-numbers">
+      <span *ngFor="let p of [].constructor(totalPaginas); let i = index"
+            (click)="irPagina(i)"
+            [class.active]="paginaActual === i">
+        {{ i + 1 }}
+      </span>
+    </div>
+
+    <button class="page-btn" (click)="cambiarPagina(1)" [disabled]="paginaActual === totalPaginas - 1">
+      ›
+    </button>
+
+    <select class="size-selector" [(ngModel)]="size" (change)="paginar()">
+      <option [value]="10">10</option>
+      <option [value]="20">20</option>
+      <option [value]="50">50</option>
+    </select>
+
+  </div>
+
+</div>
