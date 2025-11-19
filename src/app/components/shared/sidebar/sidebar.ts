@@ -20,6 +20,7 @@ export class SidebarComponent implements OnInit {
 
   rol: string | null = null;
   menuItems: SidebarItem[] = [];
+  sidebarAbierto = true;
 
   constructor(
     private router: Router,
@@ -27,14 +28,11 @@ export class SidebarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    // 🔹 Escuchar rol en tiempo real
     this.authService.rol$.subscribe(rol => {
       this.rol = rol;
       this.cargarMenu();
     });
 
-    // 🔹 También cargar por si ya había sesión guardada
     this.rol = this.authService.getRol();
     this.cargarMenu();
   }
@@ -44,36 +42,33 @@ export class SidebarComponent implements OnInit {
 
     if (this.rol === 'Administrador') {
       this.menuItems = [
-        { titulo: 'Dashboard', icono: '🏠', ruta: '/admin/dashboard' },
-        { titulo: 'Usuarios', icono: '👥', ruta: '/admin/usuarios' },
-        { titulo: 'Avionetas', icono: '✈️', ruta: '/admin/avionetas' },
-        { titulo: 'Espacios', icono: '🗺️', ruta: '/admin/espacios' },
-        { titulo: 'Mantenimiento', icono: '🛠️', ruta: '/admin/mantenimientos' },
-        { titulo: 'Vuelos', icono: '🛫', ruta: '/admin/vuelos' },
-        { titulo: 'Reportes', icono: '📊', ruta: '/admin/reportes' }
+        { titulo: 'Dashboard', icono: 'home', ruta: '/admin/dashboard' },
+        { titulo: 'Usuarios', icono: 'users', ruta: '/admin/usuarios' },
+        { titulo: 'Avionetas', icono: 'plane', ruta: '/admin/avionetas' },
+        { titulo: 'Espacios', icono: 'map', ruta: '/admin/espacios' },
+        { titulo: 'Mantenimientos', icono: 'tools', ruta: '/admin/mantenimientos' },
+        { titulo: 'Vuelos', icono: 'calendar', ruta: '/admin/vuelos' },
+        { titulo: 'Reportes', icono: 'report', ruta: '/admin/reportes' }
       ];
     }
 
     if (this.rol === 'Tutor') {
-  this.menuItems = [
-    { titulo: 'Dashboard', icono: '🏠', ruta: '/tutor/dashboard' },
-    { titulo: 'Mi Horario', icono: '📅', ruta: '/tutor/horario' },
-    { titulo: 'Actualizar Vuelos', icono: '🛫', ruta: '/tutor/vuelos' },
-    { titulo: 'Historial de Vuelos', icono: '📘', ruta: '/tutor/vuelos-historial' },
-    { titulo: 'Mis Alumnos', icono: '👨‍🎓', ruta: '/tutor/alumnos' }
-  ];
-}
-    
+      this.menuItems = [
+        { titulo: 'Dashboard', icono: 'home', ruta: '/tutor/dashboard' },
+        { titulo: 'Mi Horario', icono: 'calendar', ruta: '/tutor/horario' },
+        { titulo: 'Actualizar Vuelos', icono: 'plane', ruta: '/tutor/vuelos' },
+        { titulo: 'Historial', icono: 'book', ruta: '/tutor/vuelos-historial' },
+        { titulo: 'Mis Alumnos', icono: 'student', ruta: '/tutor/alumnos' }
+      ];
+    }
 
     if (this.rol === 'Alumno') {
       this.menuItems = [
-        { titulo: 'Dashboard', icono: '🏠', ruta: '/alumno/dashboard' },
-        { titulo: 'Notificaciones', icono: '🔔', ruta: '/alumno/notificaciones' },
-        { titulo: 'Rendimiento', icono: '📊', ruta: '/alumno/rendimiento' },
-        { titulo: 'Mi Horario', icono: '📅', ruta: '/alumno/horario' },
-        { titulo: 'Mis Vuelos', icono: '🛫', ruta: '/alumno/mis-vuelos' }
-        
-
+        { titulo: 'Dashboard', icono: 'home', ruta: '/alumno/dashboard' },
+        { titulo: 'Notificaciones', icono: 'bell', ruta: '/alumno/notificaciones' },
+        { titulo: 'Rendimiento', icono: 'report', ruta: '/alumno/rendimiento' },
+        { titulo: 'Mi Horario', icono: 'calendar', ruta: '/alumno/horario' },
+        { titulo: 'Mis Vuelos', icono: 'plane', ruta: '/alumno/mis-vuelos' }
       ];
     }
   }
@@ -85,5 +80,9 @@ export class SidebarComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  toggleSidebar() {
+    this.sidebarAbierto = !this.sidebarAbierto;
   }
 }

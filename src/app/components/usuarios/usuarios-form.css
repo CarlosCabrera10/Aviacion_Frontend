@@ -1,0 +1,128 @@
+.form-wrapper {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  color: #003060;
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
+.icon {
+  color: #C9A227;
+  margin-right: 10px;
+}
+
+.back-btn {
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  color: #003060;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  color: #001a3d;
+}
+
+.form-card {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  margin-top: 1rem;
+}
+
+.field {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #003060;
+}
+
+input,
+select {
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #f8f9fc;
+  transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus {
+  border-color: #003060;
+}
+
+.invalid {
+  color: #d9534f;
+  font-size: 0.8rem;
+  margin-top: 3px;
+}
+
+.msg {
+  text-align: center;
+  font-weight: bold;
+}
+
+.msg.error { color: #d9534f; }
+.msg.success { color: #28a745; }
+
+/* PASSWORD FIELD */
+.pass-wrapper {
+  position: relative;
+}
+
+.pass-wrapper .toggle {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  cursor: pointer;
+  color: #003060;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.btn-save {
+  background: #003060;
+  color: white;
+  padding: 0.8rem 1.3rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-save:hover {
+  background: #001a3d;
+}
+
+.btn-cancel {
+  background: #6c757d;
+  color: white;
+  padding: 0.8rem 1.3rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-cancel:hover {
+  background: #5a6268;
+}

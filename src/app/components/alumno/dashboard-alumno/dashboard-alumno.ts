@@ -21,20 +21,20 @@ export class DashboardAlumnoComponent {
   dashboardItems: DashboardItem[] = [
     {
       titulo: 'Mis Vuelos',
-      descripcion: 'Consulta tu calendario de vuelos y programación actual.',
-      icono: '📆',
+      descripcion: 'Consulta tu programación y vuelos activos.',
+      icono: 'calendar',
       ruta: '/alumno/mis-vuelos'
     },
     {
       titulo: 'Historial de Vuelos',
-      descripcion: 'Revisa todos los vuelos que has completado.',
-      icono: '🧾',
+      descripcion: 'Revisa todos tus vuelos completados.',
+      icono: 'history',
       ruta: '/alumno/historial'
     },
     {
       titulo: 'Notificaciones',
-      descripcion: 'Revisa los avisos por cambios o cancelaciones de vuelos.',
-      icono: '🔔',
+      descripcion: 'Consulta avisos y cambios importantes.',
+      icono: 'bell',
       ruta: '/alumno/notificaciones'
     }
   ];

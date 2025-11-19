@@ -22,37 +22,37 @@ export class DashboardAdminComponent {
     {
       titulo: 'Gestión de Usuarios',
       descripcion: 'Administra alumnos, tutores y personal del sistema.',
-      icono: '👥',
+      icono: 'usuarios',
       ruta: '/admin/usuarios'
     },
     {
       titulo: 'Gestión de Avionetas',
       descripcion: 'Controla el estado, código y horas de vuelo.',
-      icono: '✈️',
+      icono: 'plane',
       ruta: '/admin/avionetas'
     },
     {
       titulo: 'Gestión de Mantenimientos',
-      descripcion: 'Supervisa y programa mantenimientos de las avionetas.',
-      icono: '🛠️',
+      descripcion: 'Supervisa y programa mantenimientos de avionetas.',
+      icono: 'tools',
       ruta: '/admin/mantenimientos'
     },
     {
       titulo: 'Espacios de Vuelo',
-      descripcion: 'Administra zonas y espacios aéreos disponibles para vuelo.',
-      icono: '🗺️',
+      descripcion: 'Administra zonas y espacios aéreos disponibles.',
+      icono: 'map',
       ruta: '/admin/espacios'
     },
     {
       titulo: 'Programación de Vuelos',
       descripcion: 'Asigna vuelos a alumnos, tutores y avionetas.',
-      icono: '🗓️',
+      icono: 'calendar',
       ruta: '/admin/vuelos'
     },
     {
       titulo: 'Reportes y Estadísticas',
-      descripcion: 'Visualiza uso de avionetas, horas de vuelo y mapas térmicos.',
-      icono: '📊',
+      descripcion: 'Visualiza uso, horas de vuelo y mapas térmicos.',
+      icono: 'report',
       ruta: '/admin/reportes'
     },
   ];

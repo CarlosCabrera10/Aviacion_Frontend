@@ -1,0 +1,139 @@
+.container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #f7f8fa;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.titulo {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #003060;
+  margin-bottom: 1.5rem;
+}
+
+/* TOP BAR */
+.top-bar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.search-input,
+.filter-select {
+  flex: 1;
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+}
+
+.btn-nuevo {
+  background: linear-gradient(135deg, #003060, #001a3d);
+  color: white;
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-nuevo:hover {
+  background: #002244;
+}
+
+/* TABLA */
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th {
+  background: #003060;
+  color: white;
+  padding: 0.9rem;
+  text-align: left;
+}
+
+td {
+  padding: 0.8rem;
+  border-bottom: 1px solid #eee;
+}
+
+tr:hover {
+  background: #f0f4ff;
+}
+
+/* BADGES */
+.badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.activo { background: #28a745; color: white; }
+.inactivo { background: #dc3545; color: white; }
+
+/* ACCIONES */
+.actions .btn {
+  padding: 0.4rem 0.7rem;
+  border-radius: 6px;
+  border: none;
+  margin-right: 6px;
+  cursor: pointer;
+  color: white;
+}
+
+.edit { background: #ffc107; color: black; }
+.delete { background: #dc3545; }
+
+.edit:hover { background: #e0a800; }
+.delete:hover { background: #c82333; }
+
+/* PAGINACIÓN */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+  gap: 0.4rem;
+}
+
+.pagination span {
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #e2e6ea;
+}
+
+.pagination span.active {
+  background: #C9A227;
+  color: white;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border: none;
+  background: #003060;
+  color: white;
+  border-radius: 6px;
+}
+
+.pagination .size {
+  margin-left: 1rem;
+  padding: 0.4rem;
+}
+
+/* NO DATA */
+.no-data {
+  text-align: center;
+  color: #666;
+  margin-top: 1rem;
+}

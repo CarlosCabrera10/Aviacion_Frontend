@@ -19,16 +19,19 @@ export class DashboardTutorComponent implements OnInit {
     {
       titulo: 'Mi Horario de Vuelos',
       descripcion: 'Consulta tus vuelos del mes en un calendario.',
+      icono: 'calendar',
       ruta: '/tutor/horario'
     },
     {
       titulo: 'Actualizar Vuelos',
       descripcion: 'Marca vuelos como completados o cancelados.',
+      icono: 'plane',
       ruta: '/tutor/vuelos'
     },
     {
       titulo: 'Mapa Meteorológico',
       descripcion: 'Visualiza el radar de clima en la zona de vuelo.',
+      icono: 'radar',
       ruta: '/tutor/clima'
     }
   ];
@@ -39,30 +42,27 @@ export class DashboardTutorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-  //  this.cargarClima();
+    // this.cargarClima();
   }
 
   ir(ruta: string) {
     this.router.navigate([ruta]);
   }
 
-  /*
-cargarClima() {
-  this.cargandoClima = true;
+  /* cargarClima() {
+    this.cargandoClima = true;
+    const lat = 13.6894;
+    const lon = -89.1872;
 
-  const lat = 13.6894;   // Coordenadas del aeródromo / aeropuerto
-  const lon = -89.1872;
-
-  this.weatherService.climaActual(lat, lon).subscribe({
-    next: (data) => {
-      this.clima = data;
-      this.cargandoClima = false;
-    },
-    error: (err) => {
-      console.error("Error cargando clima:", err);
-      this.cargandoClima = false;
-    }
-  });
-} */
-
+    this.weatherService.climaActual(lat, lon).subscribe({
+      next: (data) => {
+        this.clima = data;
+        this.cargandoClima = false;
+      },
+      error: (err) => {
+        console.error("Error cargando clima:", err);
+        this.cargandoClima = false;
+      }
+    });
+  } */
 }
