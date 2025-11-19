@@ -33,6 +33,9 @@ import { EditarVueloComponent } from './components/tutor/editar-vuelo/editar-vue
 import { AlumnosTutorComponent } from './components/tutor/alumnos-tutor/alumnos-tutor';
 import { DetalleAlumnoComponent } from './components/tutor/detalle-alumno/detalle-alumno';
 import { DetalleVueloComponent } from './components/tutor/detalle-vuelo/detalle-vuelo';
+import { ClimaTutorComponent } from './components/tutor/clima-tutor/clima-tutor';
+
+import { CondicionesVueloComponent } from './components/tutor/condiciones-vuelo/condiciones-vuelo';
 
 
 
@@ -111,7 +114,9 @@ export const routes: Routes = [
 
     // detalle alumno (lo activamos más adelante)
     { path: 'alumnos/:id', component: DetalleAlumnoComponent },
-     { path: 'vuelos/detalle/:id', component: DetalleVueloComponent }
+     { path: 'vuelos/detalle/:id', component: DetalleVueloComponent },
+     {path: 'clima', component: ClimaTutorComponent },
+     {path: 'condiciones-vuelo', component: CondicionesVueloComponent },
   ]
 },
 
