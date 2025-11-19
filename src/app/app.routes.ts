@@ -78,7 +78,7 @@ export const routes: Routes = [
 
       {path: 'espacios', component: EspaciosVueloListComponent },
       {path: 'espacios/nuevo', component: EspaciosVueloFormComponent },
-      {path: 'espacios/:id', component: EspaciosVueloFormComponent },
+      {path: 'espacios/editar/:id', component: EspaciosVueloFormComponent },
       
       { path: 'reportes', component: ReportesComponent },
 
