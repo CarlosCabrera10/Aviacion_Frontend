@@ -58,7 +58,9 @@ export class SidebarComponent implements OnInit {
         { titulo: 'Mi Horario', icono: 'calendar', ruta: '/tutor/horario' },
         { titulo: 'Actualizar Vuelos', icono: 'plane', ruta: '/tutor/vuelos' },
         { titulo: 'Historial', icono: 'book', ruta: '/tutor/vuelos-historial' },
-        { titulo: 'Mis Alumnos', icono: 'student', ruta: '/tutor/alumnos' }
+        { titulo: 'Mis Alumnos', icono: 'student', ruta: '/tutor/alumnos' },
+       
+        { titulo: 'Condiciones de Vuelo', icono: 'map', ruta: '/tutor/condiciones-vuelo' }
       ];
     }
 

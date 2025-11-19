@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { WeatherService } from '../../../services/weather.service';
+import { ClimaTutorComponent } from '../clima-tutor/clima-tutor';
+import { CondicionesVueloComponent } from '../condiciones-vuelo/condiciones-vuelo';
 
 @Component({
   selector: 'app-dashboard-tutor',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ClimaTutorComponent,],
   templateUrl: './dashboard-tutor.html',
   styleUrls: ['./dashboard-tutor.css']
 })
@@ -32,7 +34,7 @@ export class DashboardTutorComponent implements OnInit {
       titulo: 'Mapa Meteorológico',
       descripcion: 'Visualiza el radar de clima en la zona de vuelo.',
       icono: 'radar',
-      ruta: '/tutor/clima'
+      ruta: '/tutor/condiciones-vuelo'
     }
   ];
 

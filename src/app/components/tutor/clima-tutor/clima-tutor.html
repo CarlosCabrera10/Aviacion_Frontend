@@ -1,0 +1,16 @@
+<div class="card" *ngIf="!cargando">
+
+  <h2>Clima Actual</h2>
+
+  <p><strong>Temperatura:</strong> {{ clima.temperature_2m }} °C</p>
+  <p><strong>Viento:</strong> {{ clima.wind_speed_10m }} km/h</p>
+  <p><strong>Ráfagas:</strong> {{ clima.wind_gusts_10m }} km/h</p>
+  <p><strong>Lluvia:</strong> {{ clima.precipitation }} mm</p>
+  <p><strong>Nubosidad:</strong> {{ clima.cloud_cover }} %</p>
+  <p><strong>Visibilidad:</strong> {{ clima.visibility / 1000 | number:'1.1-1' }} km</p>
+
+  <p><strong>Condición:</strong> {{ getDescripcion(clima.weather_code) }}</p>
+
+</div>
+
+<p *ngIf="cargando">Cargando clima...</p>
