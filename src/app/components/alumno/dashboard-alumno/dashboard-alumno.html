@@ -1,13 +1,50 @@
-<div class="dashboard-container">
-  <h1 class="titulo">Panel del Alumno</h1>
-  <p class="subtitulo">Accede a tu información de vuelos y avisos.</p>
+<div class="welcome-section">
+  <div class="welcome-card">
+    <div class="welcome-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+        <path d="M2 12h20M12 2v20" />
+      </svg>
+    </div>
 
-  <div class="card-grid">
-    <div class="card" *ngFor="let item of dashboardItems" (click)="ir(item.ruta)">
-      <div class="icono">{{ item.icono }}</div>
-      <h3 class="card-title">{{ item.titulo }}</h3>
-      <p class="card-description">{{ item.descripcion }}</p>
-      <button class="btn-primary">Ir a {{ item.titulo }}</button>
+    <div class="welcome-content">
+      <h2>Bienvenido, Alumno Piloto ✈️</h2>
+      <p>Accede rápidamente a tus vuelos, historial y notificaciones.</p>
     </div>
   </div>
 </div>
+
+<div class="stats-grid">
+  <div class="stat-card" *ngFor="let item of dashboardItems" (click)="ir(item.ruta)">
+    
+    <div class="stat-icon">
+      <svg *ngIf="item.icono === 'calendar'" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="18" rx="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+
+      <svg *ngIf="item.icono === 'history'" viewBox="0 0 24 24">
+        <path d="M3 3v6h6"/>
+        <path d="M3.05 13A9 9 0 1 0 12 3"/>
+        <path d="M12 7v5l4 2"/>
+      </svg>
+
+      <svg *ngIf="item.icono === 'bell'" viewBox="0 0 24 24">
+        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/>
+        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      </svg>
+    </div>
+
+    <div class="stat-content">
+      <h3 class="stat-title">{{ item.titulo }}</h3>
+      <p class="stat-description">{{ item.descripcion }}</p>
+
+      <span class="stat-link">Entrar →</span>
+    </div>
+  </div>
+</div>
+
+<footer class="dashboard-footer">
+  <p>© Escuela de Aviación – Panel del Alumno</p>
+</footer>

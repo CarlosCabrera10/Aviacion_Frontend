@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuariosService } from '../../services/usuarios.service';
 import { Usuario } from '../../models/usuario.model';
@@ -7,116 +8,24 @@ import { Usuario } from '../../models/usuario.model';
 @Component({
   selector: 'app-usuarios-list',
   standalone: true,
-  imports: [CommonModule],
-  template: `
-    <div class="list-container">
-      <h2>Usuarios</h2>
-
-      <button (click)="nuevoUsuario()" class="btn btn-primary">+ Nuevo Usuario</button>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Correo</th>
-            <th>Rol</th>
-            <th>Activo</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let usuario of usuarios">
-            <td>{{ usuario.nombre }}</td>
-            <td>{{ usuario.correo }}</td>
-            <td>{{ usuario.rol }}</td>
-            <td>{{ usuario.activo ? 'Sí' : 'No' }}</td>
-            <td>
-              <button (click)="editarUsuario(usuario.id)" class="btn-edit">✏️</button>
-              <button (click)="eliminarUsuario(usuario.id)" class="btn-delete">🗑️</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  `,
-  styles: [`
-    .list-container {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: #f8f9fa;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 1.5rem;
-      color: #343a40;
-      font-weight: 700;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-
-    th, td {
-      padding: 0.8rem;
-      border-bottom: 1px solid #ddd;
-      text-align: left;
-    }
-
-    th {
-      background: #e9ecef;
-      font-weight: 600;
-    }
-
-    tr:hover {
-      background: #f1f3f5;
-    }
-
-    button {
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.2s;
-      margin-right: 5px;
-    }
-
-    button:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-primary {
-      background-color: #007bff;
-      color: #fff;
-      margin-bottom: 1rem;
-    }
-
-    .btn-edit {
-      background-color: #17a2b8;
-      color: #fff;
-    }
-
-    .btn-edit:hover {
-      background-color: #117a8b;
-    }
-
-    .btn-delete {
-      background-color: #dc3545;
-      color: #fff;
-    }
-
-    .btn-delete:hover {
-      background-color: #c82333;
-    }
-  `]
+  imports: [CommonModule, FormsModule],
+  templateUrl: 'usuarios-list.html',
+  styleUrls: ['usuarios-list.css']
 })
 export class UsuariosListComponent implements OnInit {
+
   usuarios: Usuario[] = [];
+  filtrados: Usuario[] = [];
+  pagina: Usuario[] = [];
+
+  // filtros
+  search = '';
+  filtroRol = '';
+
+  // paginación
+  paginaActual = 0;
+  size = 10;
+  totalPaginas = 1;
 
   constructor(private usuarioService: UsuariosService, private router: Router) {}
 
@@ -125,15 +34,47 @@ export class UsuariosListComponent implements OnInit {
   }
 
   cargarUsuarios() {
-    this.usuarioService.listar().subscribe(data => this.usuarios = data);
+    this.usuarioService.listar().subscribe(data => {
+      this.usuarios = data;
+      this.aplicarFiltros();
+    });
   }
 
-  nuevoUsuario() {
-    this.router.navigate(['/usuarios/nuevo']);
+  aplicarFiltros() {
+    this.filtrados = this.usuarios.filter(u => {
+      const matchTexto =
+        u.nombre.toLowerCase().includes(this.search.toLowerCase()) ||
+        u.correo.toLowerCase().includes(this.search.toLowerCase());
+
+      const matchRol = !this.filtroRol || u.rol === this.filtroRol;
+
+      return matchTexto && matchRol;
+    });
+
+    this.paginar();
+  }
+
+  paginar() {
+    this.totalPaginas = Math.ceil(this.filtrados.length / this.size) || 1;
+
+    const start = this.paginaActual * this.size;
+    this.pagina = this.filtrados.slice(start, start + this.size);
+  }
+
+  cambiarPagina(dir: number) {
+    this.paginaActual = Math.min(
+      Math.max(this.paginaActual + dir, 0),
+      this.totalPaginas - 1
+    );
+    this.paginar();
+  }
+
+  irNueva() {
+    this.router.navigate(['/admin/usuarios/nuevo']);
   }
 
   editarUsuario(id: number | undefined) {
-    if (id) this.router.navigate(['/usuarios/editar', id]);
+    if (id) this.router.navigate(['/admin/usuarios/editar', id]);
   }
 
   eliminarUsuario(id: number | undefined) {

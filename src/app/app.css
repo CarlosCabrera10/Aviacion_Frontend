@@ -1,4 +1,19 @@
-.main-content {
-  margin-left: 230px;
-  padding: 1.5rem;
+:root {
+  --sidebar-width: 260px;
+}
+
+/* EL LAYOUT DEBE OCUPAR TODA LA PANTALLA */
+.layout {
+  display: flex;
+  height: 100vh;        /* ← CLAVE */
+  width: 100%;
+  overflow: hidden;
+}
+
+/* CONTENIDO PRINCIPAL */
+.layout-content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;     /* para scroll interno */
+  background: #f5f6fa;
 }
