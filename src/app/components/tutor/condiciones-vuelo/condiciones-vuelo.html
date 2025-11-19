@@ -1,0 +1,55 @@
+<div class="contenedor">
+
+  <h2 class="titulo">Condiciones Actuales para Volar</h2>
+
+  <!-- Indicador -->
+  <div class="status-box" [style.background]="colorEstado">
+    <h3>{{ estadoVuelo }}</h3>
+  </div>
+
+  <!-- Datos -->
+  <div class="datos-grid" *ngIf="clima">
+
+    <div class="dato-card">
+      <h4>Temperatura</h4>
+      <p>{{ clima.temperature_2m }}°C</p>
+    </div>
+
+    <div class="dato-card">
+      <h4>Viento</h4>
+      <p>{{ clima.wind_speed_10m }} km/h</p>
+    </div>
+
+    <div class="dato-card">
+      <h4>Ráfagas</h4>
+      <p>{{ clima.wind_gusts_10m }} km/h</p>
+    </div>
+
+    <div class="dato-card">
+      <h4>Lluvia</h4>
+      <p>{{ clima.precipitation }} mm</p>
+    </div>
+
+    <div class="dato-card">
+      <h4>Nubosidad</h4>
+      <p>{{ clima.cloud_cover }}%</p>
+    </div>
+
+    <div class="dato-card">
+      <h4>Visibilidad</h4>
+      <p>{{ (clima.visibility/1000) | number:'1.0-1' }} km</p>
+    </div>
+
+  </div>
+
+  <h2 class="titulo">Mapa del Clima</h2>
+  <div class="input-zonas">
+  <input type="number" [(ngModel)]="lat" placeholder="Latitud">
+  <input type="number" [(ngModel)]="lon" placeholder="Longitud">
+  <button (click)="actualizarZona()">Actualizar Zona</button>
+</div>
+
+  <!-- Google Map -->
+  <div id="googleMap"></div>
+
+</div>
